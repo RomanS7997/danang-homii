@@ -6,13 +6,14 @@ import {messages} from '../src/messages.js';
 import {core} from '../src/translations-core.js';
 import {landing} from '../src/translations-landing.js';
 import {pages} from '../src/translations-pages.js';
+import {enrichment} from '../src/enrichment-content.js';
 const require=createRequire(import.meta.url);
 const {parse}=require('@babel/parser');
 const traverse=require('@babel/traverse').default;
 
 test('Every Russian UI/content string has English and Vietnamese translations',()=>{
   const missing=[];
-  for(const file of ['App.jsx','LandingSections.jsx','Pages.jsx']){
+  for(const file of ['App.jsx','LandingSections.jsx','Pages.jsx','ExploreTools.jsx']){
     const ast=parse(fs.readFileSync(new URL(`../src/${file}`,import.meta.url),'utf8'),{sourceType:'module',plugins:['jsx']});
     traverse(ast,{
       StringLiteral(path){if(/[А-Яа-яЁё]/.test(path.node.value)&&!messages[path.node.value])missing.push(`${file}: ${path.node.value}`);},
@@ -30,6 +31,6 @@ test('Translations preserve all interpolation fields and do not fall back to Rus
   }
 });
 test('Translation keys are unique across content modules',()=>{
-  const rows=[...core,...landing,...pages];
+  const rows=[...core,...landing,...pages,...enrichment];
   assert.equal(new Set(rows.map(row=>row[0])).size,rows.length);
 });

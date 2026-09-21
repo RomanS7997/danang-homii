@@ -1,3 +1,28 @@
+# Design QA — richer inner pages, 2026-09-21
+
+**final result: passed**
+
+Scope: extend the existing design into useful inner-page experiences. Source is the approved deployed revision `f5092fe`, not a new visual direction. Homepage, photo/map behavior, native SF / bundled Inter stack and the balanced type scale are retained.
+
+- **Geometry and spacing:** district tabs lead into a large image plus editorial story, then a daily scenario, lifestyle picker and comparison. Rental and guides have distinct 3:2 scene introductions. Comparison becomes two readable columns with shared row labels on phones. Owners and About have their own practical content.
+- **Typography:** body 16–17 px, secondary detail 14–15 px, controls 14–16 px with usable hit areas, inputs 16 px. New section headings 28–38 px; captions 14 px. Short overlines remain 12 px. Russian, English and Vietnamese checked; native Apple SF rendering was not physically tested.
+- **Palette, surfaces and assets:** ivory/navy plus blue/champagne gradients remain consistent. Nine new built-in ImageGen illustrations replace repeated homepage artwork on the inner pages; source PNG and exact prompts are archived outside the web build. Images are labelled as generated illustrations. Article thumbnails intentionally connect to their corresponding section imagery.
+- **Content:** each of five housing-search zones has its own summary, suitability, trade-off, local checks, daily itinerary, map link and source. The quiz explains its qualitative matches. Added four move stages, eight viewing checks, editable budget, guide filters, lifestyle questions and owner preparation. All new content is translated RU/EN/VI.
+- **Motion and states:** short panel transitions respect reduced-motion. Tabs support arrows/Home/End and preserve focus. Selected neighbourhood survives reload and language change; comparison prevents duplicate columns. Checklist persists across pages and reload, supports completion and reset. Budget distinguishes deposit from monthly costs and rejects empty/negative values. Guide filters and the article-to-tool anchor work.
+- **P2 fixed:** Vietnamese budget results caused horizontal overflow at 320 px. Grid children now shrink correctly, amounts omit unnecessary zero cents, and results stack on the narrowest screens. Rechecked: viewport 320, document width 305 (scrollbar excluded), no overflow.
+- **P2 fixed:** inherited mobile art height cropped the owner illustration. Explicit 3:2 sizing restores the complete model. Long illustration captions and the guides headline were shortened for mobile.
+- **Development fix:** changing the multilingual content during Vite refresh could temporarily create different locale contexts. Context identity now lives in `locale-context.js`; a subsequent editorial hot update kept the page and translations working without new console errors. Earlier dev-log entries were from before this fix.
+
+Matched comparison pairs were viewed together in the same input: `work/enrichment-qa/before-districts.jpg` / `after-districts.jpg`, and `before-rental.jpg` / `after-rental.jpg`. Both pairs use 1366 × 900 CSS pixels and 1351 × 890 JPEG rasters, RU, page top, default first district / first move step. Incomplete initial captures were replaced after images loaded; no resizing was applied. Full-view comparisons were sufficient for the intended layout/content additions.
+
+Checked all six main inner pages at 390 px in RU/EN/VI: no missing loaded images, horizontal overflow, or Russian fallback in EN/VI. Additional narrow checks: seven VI routes at 320 px; 430 px owner/About views. Visually checked mobile top, district comparison, checklist, budget, owner image, lower CTA and footer. Property-to-area link, article tool, language preservation, FAQ and opening/closing the request dialog remain usable. Forms are still explicitly local demonstrations.
+
+Evidence in `docs/screenshots/`: `districts-guide-desktop.jpg`, `rental-tools-desktop.jpg`, `guides-editorial-desktop.jpg`, `districts-guide-mobile.jpg`, `districts-compare-vi-mobile.jpg`. Additional captures and matched baselines are in the local `work/enrichment-qa/` folder.
+
+Root and Pages builds pass; 13 tests pass (3 translations, 3 practical tools, 4 Sites, 3 Pages). All 42 locale routes are generated. Existing map-library bundle-size advisory remains. No unresolved P0/P1/P2 finding in this scope.
+
+---
+
 # Design QA — balanced typography, 2026-09-21
 
 **final result: passed**

@@ -1,9 +1,9 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
+import { LocaleContext } from './locale-context.js';
 import { messages } from './messages.js';
 import { appPath, sitePath } from './paths.js';
 
 export const languages = ['ru', 'en', 'vi'];
-const LocaleContext = createContext(null);
 export function readLocation() {
   const parts = appPath(location.pathname).split('/').filter(Boolean);
   let saved = 'ru';
