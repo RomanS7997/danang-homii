@@ -1,3 +1,23 @@
+# Design QA — balanced typography, 2026-09-21
+
+**final result: passed**
+
+Source: deployed revision `4ea9634`; user approved the SF/Inter family but requested a less oversized scale. Latest rules supersede the large-type values in historical reports below.
+
+- **P2, fixed — oversized hierarchy and mobile wrapping.** Section headings reduced from up to 50 px to 42 px; mobile hero from approximately 34 px to 30 px at 390 px. The Russian hero now takes three lines instead of four. Card titles are 18 px/600; metadata and image badges 14 px. Form headings reduced to 24–26 px; mobile dialog headings to 27 px. Body copy remains 16–17 px and inputs 16 px. Compact controls retain usable hit areas and slate contrast.
+- **P2, fixed — form row alignment.** A wrapped date label displaced its field relative to the budget field. The row now aligns controls along their bottom edge; native input top edges differ by only 2 px. Rechecked the rendered desktop form after the fix.
+- **Typography:** same SF/Inter family, weight hierarchy softened, no return to 9–12 px body copy. Latin, Cyrillic and Vietnamese accents inspected. Apple-device rendering was not independently tested.
+- **Layout:** hero photo gains space as heading height decreases; photo/map relationship, page order, CTA position and responsive grids are retained. More compact caption and footer; no clipping or horizontal overflow in checked 320/390/1366 px views.
+- **Colour, imagery and content:** existing ivory/navy and champagne/blue gradients, generated imagery, transparent logo and copy remain unchanged. No asset substitutions or new visual effects.
+
+Comparison evidence: `work/type-balance-qa/before-desktop.png` and `after-desktop.png`, captured at 1366 × 900 CSS pixels; both exported rasters 1351 × 890. Mobile pair `before-mobile.png` / `after-mobile.png` at 390 × 844 CSS pixels; both rasters 375 × 812. Files contain JPEG bytes from the browser despite local .png names; no resize or density normalization was applied. Both pairs were opened together in the same comparison input. State: RU, gradient variant 2, seaside selected, map open, page top. The first desktop capture during resize was discarded and replaced with the settled map. Full-view comparison also covered heading and caption regions; separate crops were unnecessary for this typography-only adjustment.
+
+Final copies: `docs/screenshots/balanced-typography-desktop.jpg` and `docs/screenshots/balanced-typography-mobile.jpg`. Additional local evidence: `work/type-balance-qa/form-mobile.png`.
+
+Checked RU homepage and lead form on desktop/mobile; VI homepage, property page and viewing dialog at 320 px; EN catalogue and footer at 320 px. Language switching and viewing dialog opening/closing work. No browser console errors. Root/Pages builds and all 10 existing tests pass. No unresolved P0/P1/P2 findings in scope.
+
+---
+
 # Design QA — readable SF/Inter typography, 2026-09-21
 
 **final result: passed (local visual and build verification)**

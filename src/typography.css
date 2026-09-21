@@ -1,10 +1,11 @@
 /* Native SF on Apple platforms; locally bundled Inter elsewhere. No Apple font
-   files are distributed. Keep the same readable scale at mobile breakpoints. */
+   files are distributed. Display, body and metadata have distinct scales;
+   fields retain 16px on phones while secondary UI stays compact and readable. */
 :root {
   --font-ui: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Inter Variable', 'Segoe UI', sans-serif;
   --muted: #526174;
   font-family: var(--font-ui);
-  font-size: 17px;
+  font-size: 16px;
   font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
 }
@@ -14,79 +15,81 @@ button, a, label, input, select, textarea { line-height: 1.45; }
 .design-shell h1, .design-shell h2 { font-family: var(--font-ui); font-weight: 600; letter-spacing: -.045em; line-height: 1.1; }
 .design-shell h3 { letter-spacing: -.025em; line-height: 1.35; }
 .design-shell .eyebrow { font-size: 12px; line-height: 1.65; font-weight: 600; letter-spacing: 1.15px; }
-.design-shell .split-intro h1 { font-size: clamp(38px, 4.3vw, 65px); line-height: 1.09; }
-.design-shell .hero-service-copy { font-size: 17px; line-height: 1.65; width: 290px; }
+.design-shell .split-intro h1 { font-size: clamp(36px, 3.8vw, 56px); line-height: 1.12; }
+.design-shell .hero-service-copy { font-size: 16px; line-height: 1.65; width: 290px; }
 .design-shell .hero-heading { min-width: 0; }
 .design-shell .split-intro { gap: 32px; align-items: flex-end; }
-.design-shell .split-bottom > span { font-size: 17px; white-space: normal; line-height: 1.45; }
-.design-shell .site-header nav a { font-size: 16px; }
+.design-shell .split-bottom > span { font-size: 15px; white-space: normal; line-height: 1.5; }
+.design-shell .site-header nav a { font-size: 15px; }
 .design-shell .site-header nav { gap: 25px; }
 .design-shell .site-header { gap: clamp(20px, 3vw, 44px); }
 .design-shell .language-picker select { font-size: 16px; }
-.design-shell .navy-button { font-size: 16px; min-height: 52px; white-space: normal; }
+.design-shell .navy-button { font-size: 15px; min-height: 48px; white-space: normal; }
 .design-shell .navy-button > svg, .text-button > svg { flex-shrink: 0; }
 .design-shell .header-cta { min-height: 48px; white-space: nowrap; }
-.design-shell .caption-info strong { font-size: 20px; line-height: 1.3; }
-.design-shell .caption-info > span { font-size: 15px; line-height: 1.5; white-space: normal; }
+.design-shell .caption-info strong { font-size: 18px; font-weight: 600; line-height: 1.3; }
+.design-shell .caption-info > span { font-size: 14px; line-height: 1.5; white-space: normal; }
 .design-shell .price > span { font-size: 14px; }
 .design-shell .photo-caption { gap: 16px; }
 .design-shell .photo-top-note span { font-size: 13px; }
-.design-shell .map-view-toggle button { font-size: 16px; min-height: 42px; }
-.design-shell .map-expand { font-size: 17px; }
+.design-shell .map-view-toggle button { font-size: 14px; min-height: 42px; }
+.design-shell .map-expand { font-size: 15px; }
 .city-map, .leaflet-container { font-family: var(--font-ui); }
-.design-shell .price-marker { font-size: 17px; }
+.design-shell .price-marker { font-size: 16px; }
 .design-shell .leaflet-control-attribution { font-size: 11px; line-height: 1.4; }
-.design-shell .home-card-title h3 { font-size: 20px; line-height: 1.35; }
-.design-shell .home-card-copy > p { font-size: 17px; line-height: 1.6; flex-wrap: wrap; }
+.design-shell .home-card-title h3 { font-size: 18px; font-weight: 600; line-height: 1.4; }
+.design-shell .home-card-copy > p { font-size: 14px; line-height: 1.65; flex-wrap: wrap; }
+.design-shell .home-card-copy .text-button { font-size: 15px; }
 .design-shell .home-card-title { align-items: flex-start; }
 .design-shell .home-card-title .price { flex-shrink: 0; }
-.design-shell .home-tag { font-size: 17px; }
+.design-shell .home-tag { font-size: 14px; }
 .design-shell .catalog-toolbar { flex-wrap: wrap; gap: 20px; }
 .design-shell .filter-list { flex-wrap: wrap; }
-.design-shell .filter-list button { min-height: 44px; font-size: 16px; }
+.design-shell .filter-list button { min-height: 42px; font-size: 15px; }
 .design-shell .catalog-demo, .design-shell .demo-note, .design-shell .lead-form-note { font-size: 14px; color: #566173; line-height: 1.65; }
 .design-shell .section-heading h2, .design-shell .editorial-heading h2, .design-shell .faq-intro h2,
-.design-shell .about-section h2 { font-size: clamp(32px, 3.6vw, 50px); line-height: 1.12; }
-.design-shell .district-tabs strong { font-size: 23px; font-weight: 600; }
-.design-shell .district-tabs small { font-size: 15px; line-height: 1.5; }
-.design-shell .district-tabs button { min-height: 104px; }
-.design-shell .district-photo { min-height: 620px; }
-.design-shell .process-step h3 { font-size: 20px; max-width: none; min-height: 0; }
-.design-shell .process-step p { font-size: 17px; line-height: 1.7; }
-.design-shell .commission-note h3 { font-size: 20px; }
-.design-shell .commission-note p { font-size: 17px; }
-.design-shell .lead-copy h2 { font-size: clamp(38px, 4.4vw, 60px); line-height: 1.1; }
-.design-shell .lead-copy > p:not(.eyebrow) { font-size: 18px; line-height: 1.7; max-width: 460px; }
-.design-shell .lead-form-card > h3, .design-shell .lead-success h3 { font-size: 30px; line-height: 1.2; font-weight: 600; }
+.design-shell .about-section h2 { font-size: clamp(28px, 3vw, 42px); line-height: 1.16; }
+.design-shell .district-tabs strong { font-size: 20px; font-weight: 600; }
+.design-shell .district-tabs small { font-size: 14px; line-height: 1.5; }
+.design-shell .district-tabs button { min-height: 92px; }
+.design-shell .district-photo { min-height: 570px; }
+.design-shell .process-step h3 { font-size: 18px; font-weight: 600; max-width: none; min-height: 0; }
+.design-shell .process-step p { font-size: 16px; line-height: 1.7; }
+.design-shell .commission-note h3 { font-size: 18px; }
+.design-shell .commission-note p { font-size: 16px; }
+.design-shell .lead-copy h2 { font-size: clamp(32px, 3.6vw, 48px); line-height: 1.14; }
+.design-shell .lead-copy > p:not(.eyebrow) { font-size: 17px; line-height: 1.7; max-width: 460px; }
+.design-shell .lead-form-card > h3, .design-shell .lead-success h3 { font-size: 26px; line-height: 1.25; font-weight: 600; }
+.design-shell .lead-field-row { align-items: end; }
 .design-shell .lead-form-card label, .design-shell .room-choices legend,
-.design-shell .request-modal label, .design-shell .owner-form-card label, .design-shell .search-panel label { font-size: 15px; }
+.design-shell .request-modal label, .design-shell .owner-form-card label, .design-shell .search-panel label { font-size: 14px; }
 .design-shell input:not([type=radio]), .design-shell select, .design-shell textarea { font-size: 16px; }
 .design-shell input::placeholder, .design-shell textarea::placeholder { font-size: 16px; color: #667080; }
 .design-shell .room-choices > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-.design-shell .room-choices label { min-height: 46px; font-size: 17px; }
-.design-shell .faq-item h3 > button { font-size: 19px; line-height: 1.5; }
-.design-shell .faq-item [role=region] p { font-size: 17px; line-height: 1.75; }
-.design-shell .faq-intro > p:not(.eyebrow) { font-size: 17px; line-height: 1.7; }
-.design-shell .about-section > p { font-size: 17px; }
-.design-shell .footer-nav a { font-size: 16px; line-height: 1.5; }
-.design-shell .footer-brand > p { font-size: 16px; }
-.design-shell .footer-contact > button { font-size: 27px; font-weight: 600; }
+.design-shell .room-choices label { min-height: 44px; font-size: 15px; }
+.design-shell .faq-item h3 > button { font-size: 17px; line-height: 1.5; }
+.design-shell .faq-item [role=region] p { font-size: 16px; line-height: 1.75; }
+.design-shell .faq-intro > p:not(.eyebrow) { font-size: 16px; line-height: 1.7; }
+.design-shell .about-section > p { font-size: 16px; }
+.design-shell .footer-nav a { font-size: 15px; line-height: 1.5; }
+.design-shell .footer-brand > p { font-size: 15px; }
+.design-shell .footer-contact > button { font-size: 24px; font-weight: 600; }
 .design-shell .footer-contact > span, .design-shell .footer-bottom,
-.design-shell .footer-bottom button { font-size: 16px; }
-.design-shell .page-intro h1, .design-shell .property-title h1 { font-size: clamp(36px, 4.5vw, 62px); line-height: 1.1; }
-.design-shell .inner-page h2, .design-shell .modal h2 { font-size: 36px; line-height: 1.15; }
-.design-shell .guide-copy h2 { font-size: 28px; min-height: 0; }
-.design-shell .guide-copy > p:not(.eyebrow) { font-size: 17px; min-height: 0; }
-.design-shell .article-layout article p:not(.eyebrow) { font-size: 18px; line-height: 1.8; }
-.design-shell .property-story > p, .design-shell .property-inquiry > p:not(.eyebrow) { font-size: 17px; }
+.design-shell .footer-bottom button { font-size: 14px; }
+.design-shell .page-intro h1, .design-shell .property-title h1 { font-size: clamp(32px, 3.8vw, 54px); line-height: 1.14; }
+.design-shell .inner-page h2, .design-shell .modal h2 { font-size: 30px; line-height: 1.2; }
+.design-shell .guide-copy h2 { font-size: 24px; min-height: 0; }
+.design-shell .guide-copy > p:not(.eyebrow) { font-size: 16px; min-height: 0; }
+.design-shell .article-layout article p:not(.eyebrow) { font-size: 17px; line-height: 1.8; }
+.design-shell .property-story > p, .design-shell .property-inquiry > p:not(.eyebrow) { font-size: 16px; }
 .design-shell .rental-terms div { font-size: 16px; line-height: 1.6; }
 .design-shell .sort-label { flex-wrap: wrap; }
-.design-shell .property-photo figcaption { font-size: 17px; }
-.design-shell .viewing-home strong { font-size: 17px; }
-.design-shell .viewing-home span, .design-shell .field-optional { font-size: 17px; }
-.design-shell .owner-form-card .navy-button { font-size: 16px; }
+.design-shell .property-photo figcaption { font-size: 14px; }
+.design-shell .viewing-home strong { font-size: 16px; }
+.design-shell .viewing-home span, .design-shell .field-optional { font-size: 14px; }
+.design-shell .owner-form-card .navy-button { font-size: 15px; }
 .design-shell .map-details .eyebrow { margin-right: 24px; }
-.design-shell .modal p:not(.eyebrow) { font-size: 17px; line-height: 1.65; }
+.design-shell .modal p:not(.eyebrow) { font-size: 16px; line-height: 1.65; }
 .design-shell .modal p.demo-note { font-size: 14px; color: #566173; }
 
 /* Give larger type real space instead of shrinking labels to keep old boxes. */
@@ -109,30 +112,33 @@ button, a, label, input, select, textarea { line-height: 1.45; }
   .design-shell .hero-service-copy svg { display: none; }
 }
 @media (max-width: 759px) {
-  .design-shell .split-intro h1, html[lang=vi] .design-shell .split-intro h1 { font-size: clamp(32px, 8.7vw, 45px); line-height: 1.12; }
-  .design-shell .split-intro > .hero-service-copy { font-size: 17px; width: auto; line-height: 1.6; }
+  .design-shell .split-intro h1, html[lang=vi] .design-shell .split-intro h1 { font-size: clamp(28px, 7.7vw, 36px); line-height: 1.15; }
+  .design-shell .split-intro > .hero-service-copy { font-size: 16px; width: auto; line-height: 1.6; }
   .design-shell .site-header { gap: 10px; }
   .design-shell .site-header .brand strong { font-size: 19px; }
   .design-shell .language-picker select { font-size: 16px; }
-  .design-shell .caption-info strong { font-size: 18px; }
+  .design-shell .caption-info strong { font-size: 17px; }
   /* The slide count is redundant with the arrows and collides with the
      enlarged view switch on narrow phones. Keep the photo unobstructed. */
   .design-shell .photo-top-note { display: none; }
   .design-shell .map-view-toggle { max-width: calc(100% - 24px); }
-  .design-shell .map-view-toggle button { padding: 8px 12px; font-size: 16px; }
+  .design-shell .map-view-toggle button { padding: 8px 12px; font-size: 14px; }
   .design-shell .split-bottom { gap: 16px; padding: 18px 14px; }
   .design-shell .split-bottom > span, html[lang=en] .design-shell .split-bottom > span,
-  html[lang=vi] .design-shell .split-bottom > span { font-size: 17px; }
+  html[lang=vi] .design-shell .split-bottom > span { font-size: 14px; }
   .design-shell .split-bottom > span svg { flex-shrink: 0; }
   .design-shell .home-card-title { flex-wrap: wrap; }
   .design-shell .home-card-title h3 { flex-basis: 100%; }
-  .design-shell .home-card-title .price strong { font-size: 25px; }
+  .design-shell .home-card-title .price strong { font-size: 23px; }
   .design-shell .district-photo { min-height: 350px; }
-  .design-shell .district-photo figcaption small { font-size: 17px; }
+  .design-shell .district-photo figcaption small { font-size: 14px; }
   .design-shell .process-grid { grid-template-columns: 1fr; gap: 24px; }
   .design-shell .process-step p { max-width: none; }
   .design-shell .commission-note { flex-wrap: wrap; }
-  .design-shell .lead-copy h2 { font-size: 40px; }
+  .design-shell .lead-copy h2 { font-size: 32px; }
+  .design-shell .lead-form-card > h3 { font-size: 24px; }
+  .design-shell .inner-page h2, .design-shell .modal h2 { font-size: 27px; }
+  .design-shell .guide-copy h2 { font-size: 24px; }
   .design-shell .lead-section { padding: 28px 16px 16px; }
   .design-shell .lead-form-card { padding: 24px 18px; }
   .design-shell .lead-form-intro { font-size: 16px; }
@@ -159,5 +165,5 @@ button, a, label, input, select, textarea { line-height: 1.45; }
   .design-shell .photo-caption { left: 40px; right: 40px; padding: 12px; }
   .design-shell .photo-caption .caption-info strong { font-size: 17px; }
   .design-shell .footer-main { column-gap: 15px; }
-  .design-shell .footer-nav a { font-size: 16px; }
+  .design-shell .footer-nav a { font-size: 15px; }
 }
