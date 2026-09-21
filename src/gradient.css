@@ -1,0 +1,74 @@
+/* Original Homii palette, carried by separately generated raster artwork. */
+.design-gradient { --gold:#aa793b; --line:#e4e2dc; --ribbon:url('/assets/brand-ribbon-v2.webp'); }
+.design-gradient .site-header { background:transparent; }
+.design-gradient .split-hero { max-width:1440px; margin:8px auto 0; padding:24px 26px 25px; border-radius:28px; background:#f7f2e9 var(--ribbon) center center/cover no-repeat; }
+.design-gradient .split-intro { padding:0 9px 27px; }
+.design-gradient .split-intro>p { color:#35495f; }
+.design-gradient .split-stage { box-shadow:0 14px 36px #0d26411a; border:1px solid #ffffffb8; }
+.design-gradient .split-bottom { margin-top:18px; padding:16px; gap:25px; background:#fffdf8ed; border:1px solid #ffffffb8; border-radius:17px; box-shadow:0 7px 24px #071c3b12; }
+.design-gradient .split-bottom>span { font-size:12px; }
+.design-gradient .split-bottom>span svg { color:#326392; }
+.design-gradient .navy-button { background-color:#1a477c; background-image:var(--ribbon); background-size:310%; background-position:100% 90%; background-blend-mode:multiply; border-color:#214f7e; box-shadow:inset 0 1px 0 #ffffff2b,0 5px 14px #1237651c; }
+.design-gradient .navy-button:hover { background-position:92% 95%; border-color:#6385ab; box-shadow:inset 0 1px 0 #ffffff30,0 8px 22px #12376524; }
+.design-gradient .filter-list button.active { background:#1d4779; border-color:#1d4779; }
+.design-gradient .home-card { border-color:#e0e3e4; box-shadow:0 6px 18px #142e4910; border-radius:17px; }
+.design-gradient .home-selected { border-color:#a2b6c9; }
+.design-gradient .home-card-copy .price strong { color:#1d4779; }
+.design-gradient .home-card:hover { box-shadow:0 12px 26px #21446a1b; }
+.design-gradient .catalog-more { background:#fffdf8; border-color:#c7d3dd; }
+.design-gradient .district-layout { gap:46px; }
+.design-gradient .district-photo { min-height:595px; border:1px solid #eee7d9; background:#f7f2e9; border-radius:21px; }
+.design-gradient .district-sculpture>img { object-fit:cover; object-position:center; }
+.design-gradient .district-sculpture figcaption { background:#ffffffdc; backdrop-filter:blur(14px); border:1px solid #ffffffd9; box-shadow:0 6px 18px #17314e0b; }
+.design-gradient .district-tabs { border-top:0; }
+.design-gradient .district-tabs button { border-radius:11px; margin-bottom:6px; min-height:88px; padding:21px 21px; border:1px solid transparent; border-bottom-color:#e5e0d8; }
+.design-gradient .district-tabs button[aria-selected=true] { background:#f2eee5 var(--ribbon) 0 0/cover; border:1px solid #e4dac8; box-shadow:0 5px 15px #1a36500b; }
+.design-gradient .district-tabs button:hover { background-color:#f1eee7; }
+.design-gradient .district-tabs button[aria-selected=true]>svg { color:#204d7b; }
+.design-gradient .district-panel { padding-top:18px; }
+.design-gradient .process-grid { gap:22px; }
+.design-gradient .process-step { border:1px solid #e3e4e2; background:#fffefa; border-radius:17px; overflow:hidden; padding:0 0 25px; box-shadow:0 8px 22px #162c4510; }
+.process-art { overflow:hidden; aspect-ratio:1.43; background:#f7f2e9; }
+.process-art img { width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .65s ease; }
+.design-gradient .process-step:hover .process-art img { transform:scale(1.035); }
+.design-gradient .step-top { padding:21px 22px 12px; margin:0; }
+.design-gradient .step-top span { font-size:30px; color:#55789b; }
+.design-gradient .step-top svg { width:22px;height:22px;color:#5e7f9d; }
+.design-gradient .process-step h3 { margin:0 22px 11px; font-size:15px; }
+.design-gradient .process-step>p { margin:0 22px; font-size:12px; }
+.design-gradient .commission-note { background:#f1eee6 var(--ribbon) 0 22%/cover no-repeat; border:1px solid #eee2d3; }
+.design-gradient .commission-note>div { background:#fffcf4d6; border-radius:10px; padding:10px 16px; }
+.design-gradient .commission-number { color:#1d4779; }
+.design-gradient .lead-section { position:relative;isolation:isolate;overflow:hidden;background:#10253f;box-shadow:0 15px 38px #122b4612; }
+.design-gradient .lead-section::before { content:''; position:absolute;inset:0;z-index:-1;background:var(--ribbon) center center/cover no-repeat;opacity:.45;transform:rotate(180deg); }
+.design-gradient .lead-copy { background:#10253fe6;border-radius:15px;padding:28px; margin:-12px 0 -12px -22px; }
+.design-gradient .lead-copy h2 { font-size:71px; }
+.design-gradient .lead-copy>.eyebrow { color:#e4c9a1; }
+.design-gradient .lead-form-card { background:#fcfaf5f5;border:1px solid #ffffffd9;box-shadow:0 15px 45px #03192b25;backdrop-filter:blur(14px); }
+.design-gradient .lead-form-card input:not([type=radio]) { border-color:#cbd3db; }
+.design-gradient .room-choices label.chosen { background:#1e4b7d;border-color:#1e4b7d; }
+.design-gradient .about-section { position:relative; }
+.design-gradient .full-footer { position:relative;isolation:isolate;overflow:hidden;background:#10253f;color:#f7f4ed; }
+.design-gradient .full-footer::before { content:'';position:absolute;inset:0;z-index:-1;background:var(--ribbon) right center/cover no-repeat;opacity:.14; }
+.design-gradient .footer-brand>p,.design-gradient .footer-contact>span,.design-gradient .footer-bottom { color:#d0d9e4; }
+.design-gradient .footer-nav>p,.design-gradient .footer-contact>p { color:#dbc9ac; }
+.design-gradient .footer-bottom,.design-gradient .footer-contact { border-color:#ffffff26; }
+.design-gradient .full-footer a:hover,.design-gradient .full-footer button:hover { color:#edc99a; }
+.design-gradient .full-footer .brand img { box-shadow:0 0 0 1px #ffffff26; }
+.design-gradient .atlas-content { background:#fcfaf5 var(--ribbon) left top/auto 170%; }
+.design-gradient .trust-row { background:#f6f0e6; }
+/* Prototype comparison tools are independent of the site's visual theme. */
+.style-comparison { gap:9px; padding:7px 10px 7px 16px; }
+.style-comparison .replay-button { padding:9px 11px; }
+.style-comparison .composition-toggle { display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%; }
+.style-comparison .composition-toggle:hover,.style-comparison .composition-toggle[aria-expanded=true] { background:#eae7df; }
+.style-comparison .composition-options { position:absolute;display:flex;flex-direction:column;align-items:stretch;gap:4px;bottom:calc(100% + 12px);right:0;width:265px;border:1px solid #dedfdc;background:#fffefa;box-shadow:0 8px 34px #0e24321f;padding:14px;border-radius:14px; }
+.composition-options>span { font-size:9px;letter-spacing:1px;color:#7b8087;padding:3px 7px 9px; }
+.style-comparison .composition-options button { padding:12px 10px;border-radius:8px;text-align:left;font-size:11px;white-space:normal; }
+.style-comparison .composition-options button:hover { background:#efeae2; }
+.style-comparison .composition-options button[aria-pressed=true] { background:#11243f; }
+@media(max-width:1499px){.design-gradient .split-hero{margin-left:18px;margin-right:18px}}
+@media(max-width:1200px){.design-gradient .split-hero{padding-left:22px;padding-right:22px}.design-gradient .split-bottom{gap:13px;padding:12px}.design-gradient .split-bottom>span{font-size:10px}.design-gradient .split-bottom .visit-button{font-size:11px;padding:15px 19px}.design-gradient .lead-copy{padding:23px}.design-gradient .lead-copy h2{font-size:62px}.design-gradient .process-step h3,.design-gradient .process-step>p{margin-left:17px;margin-right:17px}.design-gradient .step-top{padding-left:17px;padding-right:17px}}
+@media(max-width:960px){.design-gradient .split-hero{padding:21px 18px}.design-gradient .split-intro{padding-left:2px;padding-right:2px;gap:20px}.design-gradient .split-intro h1{font-size:49px}.design-gradient .split-bottom{gap:14px}.design-gradient .split-bottom>span{font-size:10px}.design-gradient .district-layout{gap:25px}.design-gradient .district-photo{min-height:580px}.design-gradient .lead-copy{padding:20px;margin:-7px 0 -7px -15px}.design-gradient .lead-copy h2{font-size:51px}.design-gradient .process-step h3{min-height:0}.design-gradient .process-step>p{max-width:none}.design-gradient .process-art{aspect-ratio:1.75}}
+@media(max-width:759px){.design-gradient .site-header{padding-left:18px;padding-right:18px}.design-gradient .split-hero{margin:4px 10px 0;padding:21px 10px 13px;border-radius:22px;background-position:38% center}.design-gradient .split-intro{padding:0 7px 23px}.design-gradient .split-intro h1{font-size:clamp(36px,7.6vw,54px)}.design-gradient .split-intro>p{color:#334b64;padding-top:16px}.design-gradient .split-stage{border-radius:15px}.design-gradient .split-bottom{padding:11px 10px 14px;gap:15px 10px;margin-top:12px;border-radius:13px}.design-gradient .split-bottom .visit-button{font-size:11px;padding:13px 12px;gap:12px;white-space:normal;width:100%}.design-gradient .split-bottom>span{font-size:8px;white-space:normal;line-height:1.5;gap:7px}.design-gradient .split-bottom>span svg{width:22px;flex-shrink:0}.design-gradient .district-layout{gap:23px}.design-gradient .district-photo{min-height:350px;border-radius:17px}.design-gradient .district-photo figcaption{padding:15px;left:17px;right:17px}.design-gradient .district-tabs button{padding:18px 14px;min-height:80px}.design-gradient .process-grid{gap:17px 13px}.design-gradient .process-step{padding-bottom:19px;border-radius:12px}.design-gradient .process-art{aspect-ratio:1.12}.design-gradient .process-art img{object-fit:cover;object-position:center}.design-gradient .step-top{padding:15px 13px 10px}.design-gradient .step-top span{font-size:25px}.design-gradient .step-top svg{width:18px;height:18px}.design-gradient .process-step h3{font-size:13px;margin:0 13px 10px;min-height:39px;line-height:1.5}.design-gradient .process-step>p{font-size:11px;margin:0 13px;line-height:1.75}.design-gradient .commission-note{gap:13px;padding:20px 13px}.design-gradient .commission-note>div{padding:7px 10px}.design-gradient .lead-section{padding:25px 18px 18px}.design-gradient .lead-section::before{background-position:63% center;opacity:.36}.design-gradient .lead-copy{padding:23px 19px 0;margin:-7px -3px 20px}.design-gradient .lead-copy h2{font-size:57px}.design-gradient .lead-form-card{padding:25px 20px}.design-gradient .full-footer::before{background-position:70% center;opacity:.1}.style-comparison{padding:6px 7px;gap:3px;width:max-content;max-width:calc(100% - 22px)}.style-comparison>div[role=group]:not(.composition-options){gap:1px}.style-comparison>div button{font-size:10px;padding:11px 12px}.style-comparison .replay-button{padding:9px 10px}.style-comparison .composition-toggle{width:31px;height:34px}.style-comparison .composition-toggle svg{width:18px}.style-comparison .composition-options{right:0;width:250px}.style-comparison .composition-options button{font-size:11px;padding:12px 10px}}
+@media(max-width:380px){.design-gradient .split-intro h1{font-size:34px}.design-gradient .split-intro{padding-left:3px;padding-right:3px}.design-gradient .split-bottom{grid-template-columns:repeat(2,minmax(0,1fr));padding-left:8px;padding-right:8px}.design-gradient .split-bottom .visit-button{font-size:10px;padding:12px 8px;gap:6px}.design-gradient .split-bottom>span{font-size:7.5px;gap:4px}.design-gradient .split-bottom>span svg{width:18px}.design-gradient .process-grid{gap:14px 11px}.design-gradient .process-step h3{font-size:12px;margin-left:11px;margin-right:11px;min-height:36px}.design-gradient .process-step>p{font-size:10.5px;margin-left:11px;margin-right:11px}.design-gradient .step-top{padding-left:11px;padding-right:11px}.design-gradient .lead-copy h2{font-size:49px}.design-gradient .lead-copy{padding-left:15px;padding-right:15px}.design-gradient .lead-form-card{padding:23px 15px}.style-comparison>div button{font-size:9px;padding:10px 10px}.style-comparison .replay-button{padding:8px}.style-comparison .composition-toggle{width:28px}.style-comparison{gap:2px}}

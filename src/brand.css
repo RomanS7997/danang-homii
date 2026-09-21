@@ -1,0 +1,21 @@
+/* The transparent home-and-wave emblem shares the site's blue/gold glass palette. */
+.design-shell .brand { gap:4px; }
+.design-shell .brand img.brand-symbol {
+  display:block;
+  width:52px;
+  height:52px;
+  flex-shrink:0;
+  object-fit:contain;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+@media (max-width:759px) {
+  .design-shell .site-header .brand { gap:3px; }
+  .design-shell .site-header .brand img.brand-symbol { width:42px;height:42px; }
+}
+@media (max-width:380px) {
+  .design-shell .site-header .brand { gap:2px; }
+  .design-shell .site-header .brand strong { font-size:17px; }
+}

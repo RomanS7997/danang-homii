@@ -1,0 +1,86 @@
+/* The map unfolds, settles into place, then prices land in a short cascade. */
+.split-stage {
+  --map-reveal-duration: 1280ms;
+  --map-reveal-ease: cubic-bezier(.19, .78, .18, 1);
+}
+.split-stage > .photo-window {
+  transition: width var(--map-reveal-duration) var(--map-reveal-ease);
+}
+.split-stage .apartment-photo {
+  scale: 1.045;
+  transition: opacity 0s 600ms, scale 1700ms cubic-bezier(.2, .65, .22, 1);
+}
+.split-stage .apartment-photo.photo-active {
+  transition: opacity 600ms ease, scale 1700ms cubic-bezier(.2, .65, .22, 1);
+}
+.split-stage.map-open .apartment-photo { scale: 1; }
+.split-map { overflow: hidden; }
+.split-map .city-map {
+  opacity: .3;
+  transform: translateX(44px) scale(1.12);
+  transform-origin: 30% 55%;
+  transition: transform 1500ms var(--map-reveal-ease), opacity 750ms ease;
+}
+.map-open .split-map .city-map { opacity: 1; transform: none; }
+.split-stage .map-expand { animation: map-control-arrive 600ms 700ms both; }
+.atlas-map-layer {
+  transform: translateX(64px) scale(1.06);
+  transform-origin: 65% 55%;
+  transition: opacity 1100ms ease, transform 1450ms cubic-bezier(.19, .78, .18, 1);
+}
+.atlas-map-open .atlas-map-layer { transform: none; }
+.intro-reset, .intro-reset > .photo-window, .intro-reset .apartment-photo,
+.intro-reset .city-map, .intro-reset .atlas-map-layer { transition: none !important; }
+
+/* CSS starts only after both the panel and the basemap are ready. */
+.city-map .price-marker { animation: none; transform-origin: 50% 115%; }
+.city-map[data-pin-reveal='waiting'] .price-marker,
+.city-map[data-pin-reveal='waiting'] .home-connector {
+  visibility: hidden;
+  pointer-events: none;
+}
+.city-map[data-pin-reveal='entering'] .price-marker {
+  animation: map-price-land 850ms var(--marker-delay) both;
+}
+.city-map[data-pin-reveal='entering'] .home-connector {
+  animation: map-control-arrive 700ms 180ms both;
+}
+.city-map[data-pin-reveal='entering'] .price-marker.is-selected::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid #bb985c;
+  border-radius: 11px;
+  background: none;
+  mix-blend-mode: normal;
+  pointer-events: none;
+  animation: map-selected-ring 780ms calc(var(--marker-delay) + 180ms) both;
+}
+@keyframes map-price-land {
+  0% { opacity: 0; translate: 0 30px; scale: .66; }
+  55% { opacity: 1; translate: 0 -6px; scale: 1.07; animation-timing-function: ease-in-out; }
+  78% { opacity: 1; translate: 0 2px; scale: .98; animation-timing-function: ease-out; }
+  100% { opacity: 1; translate: 0 0; scale: 1; }
+}
+@keyframes map-selected-ring {
+  0% { opacity: 0; scale: .9; }
+  25% { opacity: .65; }
+  100% { opacity: 0; scale: 1.7; }
+}
+@keyframes map-control-arrive {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (max-width: 759px) {
+  .design-shell .split-stage { transition: grid-template-rows 1150ms var(--map-reveal-ease); }
+  .split-map .city-map { transform: translateY(32px) scale(1.06); }
+  .map-open .split-map .city-map { transform: none; }
+  .atlas-map-layer { transform: translateY(32px) scale(1.04); }
+  .atlas-map-open .atlas-map-layer { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .split-stage .apartment-photo { scale: 1; }
+  .split-map .city-map, .atlas-map-layer { transform: none; }
+  .city-map .price-marker, .city-map .home-connector, .split-stage .map-expand { animation: none !important; }
+  .city-map .price-marker.is-selected::before { display: none; }
+}

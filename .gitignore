@@ -1,0 +1,13 @@
+# Dependencies, generated build output and local runtime files.
+node_modules/
+dist/
+.vite/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Local review captures are not required to reproduce the website.
+preview/
