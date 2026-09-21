@@ -1,3 +1,21 @@
+# Design QA — light header redesign, 2026-09-21
+
+**final result: passed**
+
+Scope: make the header distinct while retaining the light character the user preferred. This implementation introduces an elevated ivory surface with a thin blue/champagne frame, a separate pale navigation group, navy CTA, active-page state and a matching mobile menu.
+
+- **Source and comparison:** `work/header-qa/before-desktop.jpg` and `before-mobile.jpg` capture the original light header; the reverted baseline `e00f69b` has the same source tree as that version. Implementation: `work/light-header-qa/desktop.jpg` and `mobile.jpg`, in the parent workspace. Each pair was opened together in the same comparison input. RU homepage, first apartment, photo + map open, top of page. Desktop 1366 × 900 CSS / 1351 × 890 JPEG; phone 390 × 844 CSS / 375 × 812 JPEG. Matching browser density, no image resizing. Full captures show the header at readable size, so no separate crop was required.
+- **Typography:** SF/Inter retained; navigation 15 px, language 16 px, brand 21 px desktop and 18–17 px phone. Hero and content typography unchanged. RU, EN and VI labels remain readable and fit.
+- **Spacing/layout:** 78 px desktop / 66 px phone header, visible outer gutter, rounded frame, shadow and centred navigation group. First screen moves down by 16 px desktop / 10 px phone to accommodate the new frame. This is intentional; photo/card actions remain visible. Initial inspection found the navigation too far right; distributing the three header groups evenly fixed its alignment before matched comparison.
+- **Color/tokens:** light ivory surface preserves the page palette, blue/gold outline relates to the original logo, pale blue-grey navigation group separates links, active item has a raised white surface. Navy is confined to the CTA and selected mobile toggle. Text and focus outlines remain clear.
+- **Assets/content:** original transparent house/wave logo, generated images and all labels retained. Existing Phosphor arrow added to the CTA; the mobile toggle switches to a close icon. No replacement assets or invented copy.
+- **Interaction/responsiveness:** header stays at y=12 after scrolling to y=900; desktop links and active-page state work. Mobile Escape closes the menu and returns focus; the mobile CTA opens the existing request dialog. RU/EN/VI language switching works. Tested 320, 390, 960, 1024, 1131 and 1366 px with no overflow or overlapping header groups. VI menu evidence: `work/light-header-qa/mobile-menu-vi.jpg`. Sticky inquiry and anchor offsets allow room for the header.
+- **Validation:** root and Pages builds, all 16 existing tests and `git diff --check` passed. Final browser error log was empty. Physical Apple SF rendering was not tested. No tests were added for the reversible styling change.
+
+Comparison result: no actionable P0/P1/P2 regressions in the matched desktop/mobile review. Intended visual changes are documented above. Checklist complete: light surface/frame, navigation grouping, active/focus states, mobile menu, sticky offsets, interactions and build checks.
+
+---
+
 # Design QA — map navigation, 2026-09-21
 
 **Local result: passed.** The approved photo/map composition and gradient basemap are retained.
