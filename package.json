@@ -12,7 +12,8 @@
     "test:i18n": "node --test tests/i18n.test.mjs",
     "test:pages": "node --test tests/pages.test.mjs",
     "test:explore": "node --test tests/explore-tools.test.mjs",
-    "test:map": "node --test tests/map-navigation.test.mjs"
+    "test:map": "node --test tests/map-navigation.test.mjs",
+    "test:calendar": "node --test tests/calendar.test.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",

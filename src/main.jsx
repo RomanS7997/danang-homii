@@ -15,6 +15,7 @@ import './typography.css';
 import './enrichment.css';
 import './map-interactions.css';
 import './header.css';
+import './date-picker.css';
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>

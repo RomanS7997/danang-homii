@@ -1,4 +1,10 @@
 export const core = [
+['Выберите дату','Choose a date','Chọn ngày'],
+['Закрыть календарь','Close calendar','Đóng lịch'],
+['Предыдущий месяц','Previous month','Tháng trước'],
+['Следующий месяц','Next month','Tháng sau'],
+['Сегодня','Today','Hôm nay'],
+['Без даты','No date yet','Chưa chọn ngày'],
 ['Светлая квартира у моря','A bright home by the sea','Căn hộ ngập nắng gần biển'],
 ['Квартира у моря','A home by the sea','Căn hộ gần biển'],
 ['Ан Тхыонг','An Thuong','An Thượng'],

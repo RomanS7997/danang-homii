@@ -1,3 +1,15 @@
+# Design QA — localized custom date picker, 2026-09-21
+
+**Result: passed.** Fixes the browser-localized Russian date mask in the Vietnamese form without changing published routes.
+
+- Replaced both native date fields with the same custom calendar: lead form on the homepage and request dialog. Ivory/blue surface, gold today outline, clear selected state, custom calendar icon and translated controls. Desktop popup stays inside the viewport; phone uses a bottom panel.
+- Explicit RU/EN/VI formatting drives the placeholder, selected date, month, weekdays and accessible labels. Vietnamese date reads `22/09/2026`, Russian `21.09.2026`. The service-language description is also translated; the i18n suite no longer exempts that phrase from its Cyrillic check. Language-menu autonyms remain intentional.
+- Browser checks: select and clear dates, Today, keyboard PageDown/Enter, reopen with selection, language switching retaining the selected day, past dates disabled, outside click, Escape and focus return. Inside the request dialog, Escape closes the calendar first and leaves the request open; closing the request restores page scrolling.
+- Desktop 1366 × 900 and phones 320 × 780 / 390 × 844: calendar stays on screen without horizontal overflow. Initial VI weekday abbreviations wrapped at 320 px; switched the visible row to localized T2–T7/CN while retaining full spoken names. No native date inputs or visible Cyrillic text remained in the VI homepage content during inspection.
+- Captures in parent workspace `work/date-picker-qa/`: desktop-vi.jpg, mobile-320-vi.jpg, mobile-390-vi.jpg, request-mobile-320-vi.jpg. Desktop capture precedes the shortened VI weekday row; final phone captures show that correction. Native calendar popup is removed; existing header, hero, map and URLs are retained.
+- Added three date regression tests covering leap days, year/month rollover, Monday grids and explicit localization. CI now runs them alongside the existing suites: 19 tests in total. Root/Pages builds and route/asset checks pass; Pages still generates 42 localized entry points. Physical touch hardware was not tested.
+
+---
 # Design QA — open header and custom language menu, 2026-09-21
 
 **final result: passed** (implementation and regression checks; visual preference awaits user review).

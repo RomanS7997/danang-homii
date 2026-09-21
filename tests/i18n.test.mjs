@@ -13,7 +13,7 @@ const traverse=require('@babel/traverse').default;
 
 test('Every Russian UI/content string has English and Vietnamese translations',()=>{
   const missing=[];
-  for(const file of ['App.jsx','LandingSections.jsx','Pages.jsx','ExploreTools.jsx','LanguagePicker.jsx']){
+  for(const file of ['App.jsx','LandingSections.jsx','Pages.jsx','ExploreTools.jsx','LanguagePicker.jsx','DatePicker.jsx']){
     const ast=parse(fs.readFileSync(new URL(`../src/${file}`,import.meta.url),'utf8'),{sourceType:'module',plugins:['jsx']});
     traverse(ast,{
       StringLiteral(path){if(/[А-Яа-яЁё]/.test(path.node.value)&&!messages[path.node.value])missing.push(`${file}: ${path.node.value}`);},
@@ -27,7 +27,7 @@ test('Translations preserve all interpolation fields and do not fall back to Rus
   for(const [key,value] of Object.entries(messages))for(const lang of ['en','vi']){
     assert.ok(value[lang]?.trim(),`${lang}: ${key}`);
     assert.deepEqual(placeholders(value[lang]),placeholders(key),`${lang}: ${key}`);
-    if(key!=='Русский · English · Tiếng Việt')assert.ok(!/[А-Яа-яЁё]/.test(value[lang]),`${lang}: ${key}`);
+    assert.ok(!/[А-Яа-яЁё]/.test(value[lang]),`${lang}: ${key}`);
   }
 });
 test('Translation keys are unique across content modules',()=>{

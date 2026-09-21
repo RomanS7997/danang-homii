@@ -2,6 +2,7 @@ import { Link, useLocale } from './locale.jsx';
 import { assetPath } from './paths.js';
 import { useEffect, useRef, useState } from 'react';
 import { useArtworkReveal } from './useArtworkReveal.js';
+import { DatePicker } from './DatePicker.jsx';
 import { ArrowRightIcon, ArrowUpRightIcon, ArrowUpIcon, CheckIcon, PlusIcon, ChatCircleDotsIcon, EyeIcon, FileTextIcon, KeyIcon, MapPinIcon } from '@phosphor-icons/react';
 const districts = [{
   name: 'Ан Тхыонг',
@@ -120,7 +121,7 @@ export function LeadSection() {
           }
           setDone(true);
         }}>
-      <div className="lead-field-row"><label>{t("Бюджет в месяц, $")}<input name="budget" type="number" min="100" max="10000" step="10" placeholder={t("Например, 700")} required /></label><label>{t("Дата заезда — необязательно")}<input name="arrival" type="date" min={minDate} /></label></div>
+      <div className="lead-field-row"><label>{t("Бюджет в месяц, $")}<input name="budget" type="number" min="100" max="10000" step="10" placeholder={t("Например, 700")} required /></label><DatePicker name="arrival" min={minDate} label={t("Дата заезда — необязательно")}/></div>
       <fieldset className="room-choices"><legend>{t("Сколько спален?")}</legend><div>{[['any', 'Любые'], ['0', 'Студия'], ['1', '1 спальня'], ['2', '2 спальни']].map(([value, room]) => <label key={value} className={rooms === value ? 'chosen' : ''}><input type="radio" name="bedrooms" value={value} checked={rooms === value} onChange={() => setRooms(value)} /><span>{t(room)}</span></label>)}</div></fieldset>
       <label>{t("Telegram или WhatsApp")}<input name="contact" onInput={e => e.currentTarget.setCustomValidity('')} placeholder={t("@username или номер телефона")} autoComplete="off" minLength="3" required /></label>
       <button type="submit" className="navy-button">{t("Получить подборку")}<ArrowRightIcon size={20} /></button><p className="lead-form-note">{t("Демонстрация: заявка никуда не отправляется.")}</p>

@@ -7,6 +7,7 @@ import { assetPath } from './paths.js';
 import { DistrictSection, ProcessSection, LeadSection, FaqSection, AboutSection, FullFooter } from './LandingSections.jsx';
 import { Link, useLocale } from './locale.jsx';
 import { LanguagePicker } from './LanguagePicker.jsx';
+import { DatePicker } from './DatePicker.jsx';
 import { CatalogPage, PropertyPage, DistrictsPage, RentalPage, GuidesPage, GuidePage, AboutPage, OwnersPage, NotFound, areaIds, areaNames, pageTitles, guides } from './Pages.jsx';
 import 'leaflet/dist/leaflet.css';
 import { ArrowRightIcon, ArrowDownIcon, ArrowUpRightIcon, ArrowClockwiseIcon, CaretLeftIcon, CaretRightIcon, MapPinIcon, MapTrifoldIcon, FrameCornersIcon, CrosshairIcon, XIcon, EyeIcon, ShieldCheckIcon, UsersIcon, FileTextIcon, BedIcon, RulerIcon, HeartIcon, CheckIcon, PlusIcon, MinusIcon, SlidersHorizontalIcon, ListIcon } from '@phosphor-icons/react';
@@ -407,7 +408,7 @@ function RequestForm({
       <form className={viewing ? 'viewing-form' : ''} onSubmit={submit}>
         {!viewing && <>
           <label>{t("Бюджет в месяц, $")}<input required name="budget" type="number" min="100" max="10000" placeholder={t("Например, 700")} /></label>
-          <label><span>{t("Дата заезда")} <small className="field-optional">{t("необязательно")}</small></span><input name="date" type="date" min={minDate} /></label>
+          <DatePicker name="date" min={minDate} label={<>{t("Дата заезда")} <small className="field-optional">{t("необязательно")}</small></>}/>
           <label>{t("Спальни")}<select name="rooms" defaultValue="any"><option value="any">{t("Неважно")}</option><option value="0">{t("Студия")}</option><option value="1">{t("1 спальня")}</option><option value="2">{t("2 спальни")}</option></select></label>
         </>}
         <label>{t("Telegram или WhatsApp")}<input name="contact" required minLength={3} placeholder={t("@username или номер телефона")} autoComplete="off" onInput={e => e.currentTarget.setCustomValidity('')} /></label>
