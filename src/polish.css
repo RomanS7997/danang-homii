@@ -16,7 +16,7 @@
 .city-map[data-basemap=vector] .leaflet-canvas { background:#f4f0e7; }
 .city-map[data-basemap=vector] .leaflet-tile-pane { filter:none;opacity:1; }
 .city-map[data-basemap=fallback] .leaflet-tile-pane { filter:saturate(.45) contrast(.88) brightness(1.08); }
-.design-gradient .leaflet-control-attribution { background:#fcfaf5eb;color:#44576b;font-size:8px; }
+.design-gradient .leaflet-control-attribution { background:#fcfaf5eb;color:#44576b;font-size:11px; }
 .design-gradient .leaflet-control-attribution a { color:#44576b; }
 .design-gradient .price-marker { border-color:#fffdf8;box-shadow:0 3px 10px #203a5429; }
 .price-marker.is-offset::after { display:none; }

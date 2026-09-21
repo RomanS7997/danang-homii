@@ -63,4 +63,6 @@ npm run dev -- --host 127.0.0.1 --port 4173
 
 Часть текстов адаптирована по [старому сайту](https://www.dananghomesliving.com/en). Непроверенные телефоны, адреса и условия реальных объектов не переносились.
 
-Карта: [Leaflet](https://leafletjs.com/), [MapLibre](https://maplibre.org/), [OpenFreeMap](https://openfreemap.org/), [OpenMapTiles](https://openmaptiles.org/), [OpenStreetMap](https://www.openstreetmap.org/copyright). Стиль адаптирован из Liberty, атрибуция сохранена. Иконки — [Phosphor](https://phosphoricons.com/), шрифты — Manrope и Cormorant Garamond через Fontsource.
+Карта: [Leaflet](https://leafletjs.com/), [MapLibre](https://maplibre.org/), [OpenFreeMap](https://openfreemap.org/), [OpenMapTiles](https://openmaptiles.org/), [OpenStreetMap](https://www.openstreetmap.org/copyright). Стиль адаптирован из Liberty, атрибуция сохранена. Иконки — [Phosphor](https://phosphoricons.com/).
+
+Шрифт: системный San Francisco на Apple через `-apple-system`, локальный Inter Variable через Fontsource на Windows/Android. `SF Pro Display` указан первым для устройств, где он доступен. Файлы Apple не включены в проект: [условия Apple](https://developer.apple.com/fonts/). Кириллица, латиница и вьетнамские знаки поддерживаются. Размеры и адаптивные отступы заданы в `src/typography.css`: основной текст 17–18 px, кнопки/поля 16 px, второстепенные подписи 14–15 px.

@@ -7,24 +7,6 @@ import { DistrictSection, ProcessSection, LeadSection, FaqSection, AboutSection,
 import { Link, useLocale } from './locale.jsx';
 import { CatalogPage, PropertyPage, DistrictsPage, RentalPage, GuidesPage, GuidePage, AboutPage, OwnersPage, NotFound, areaIds, areaNames, pageTitles, guides } from './Pages.jsx';
 import 'leaflet/dist/leaflet.css';
-import '@fontsource/manrope/latin-400.css';
-import '@fontsource/manrope/latin-500.css';
-import '@fontsource/manrope/latin-600.css';
-import '@fontsource/manrope/latin-700.css';
-import '@fontsource/manrope/cyrillic-400.css';
-import '@fontsource/manrope/cyrillic-500.css';
-import '@fontsource/manrope/cyrillic-600.css';
-import '@fontsource/manrope/cyrillic-700.css';
-import '@fontsource/cormorant-garamond/latin-500.css';
-import '@fontsource/cormorant-garamond/latin-600.css';
-import '@fontsource/cormorant-garamond/cyrillic-500.css';
-import '@fontsource/cormorant-garamond/cyrillic-600.css';
-import '@fontsource/manrope/vietnamese-400.css';
-import '@fontsource/manrope/vietnamese-500.css';
-import '@fontsource/manrope/vietnamese-600.css';
-import '@fontsource/manrope/vietnamese-700.css';
-import '@fontsource/cormorant-garamond/vietnamese-500.css';
-import '@fontsource/cormorant-garamond/vietnamese-600.css';
 import { ArrowRightIcon, ArrowDownIcon, ArrowUpRightIcon, ArrowClockwiseIcon, CaretLeftIcon, CaretRightIcon, MapPinIcon, MapTrifoldIcon, FrameCornersIcon, XIcon, EyeIcon, ShieldCheckIcon, UsersIcon, FileTextIcon, BedIcon, RulerIcon, HeartIcon, CheckIcon, PlusIcon, MinusIcon, SlidersHorizontalIcon, ListIcon } from '@phosphor-icons/react';
 // Illustrative inventory only. Stable IDs connect routes, map markers and saved
 // favourites; replace factual fields together when real listings are connected.
@@ -318,7 +300,7 @@ function Photo({
       {!atlas && <div className="photo-top-note"><span>{t("Лично проверяем жильё")}</span><span>{String(homes.findIndex(h => h.id === home.id) + 1).padStart(2, '0')} / 04</span></div>}
       <div className="photo-caption" aria-live="polite">
         {!atlas && <button className="round-button previous" onClick={onPrev} aria-label={t("Предыдущая квартира")}><CaretLeftIcon size={22} /></button>}
-        <div key={`caption-${home.id}`} className="caption-info"><strong>{atlas ? t(home.title) : t(home.short)}</strong><span>{t(home.district)} <span className="meta-dot">·</span> {t(roomText(home.rooms))} <span className="meta-dot">·</span> {home.area} {t("м²")}</span></div>
+        <div key={`caption-${home.id}`} className="caption-info"><strong>{atlas ? t(home.title) : t(home.short)}</strong><span>{t(home.district)} <span className="meta-dot">·</span> {t(roomText(home.rooms))} <span className="meta-dot">·</span> {home.area}{"\u00a0"}{t("м²")}</span></div>
         <div key={`price-${home.id}`} className="price"><strong>${home.price}</strong><span>{t("/ месяц")}</span></div>
         {atlas ? <button className="navy-button photo-cta" onClick={onDetails}>{t("Смотреть квартиру")}<ArrowUpRightIcon size={19} /></button> : <button className="round-button next" onClick={onNext} aria-label={t("Следующая квартира")}><CaretRightIcon size={22} /></button>}
       </div>
@@ -398,7 +380,7 @@ function RequestForm({
         }) : t('Укажите бюджет и пожелания. Дату заезда можно уточнить позже.')}</p>
       {viewing && <div className="viewing-home">
         <img src={home.image} alt="" />
-        <div><strong>{t(home.title)}</strong><span>{t(home.district)} · {t(roomText(home.rooms))} · {home.area} {t("м²")}</span><b>${home.price}<small> {t("/ месяц")}</small></b></div>
+        <div><strong>{t(home.title)}</strong><span>{t(home.district)} · {t(roomText(home.rooms))} · {home.area}{"\u00a0"}{t("м²")}</span><b>${home.price}<small> {t("/ месяц")}</small></b></div>
       </div>}
       <form className={viewing ? 'viewing-form' : ''} onSubmit={submit}>
         {!viewing && <>
@@ -577,7 +559,7 @@ export function App() {
           <button className={`favorite ${favorites.includes(home.id) ? 'is-favorite' : ''}`} aria-label={t(favorites.includes(home.id) ? 'Убрать из избранного: {home}' : 'В избранное: {home}', {
                 home: t(home.title)
               })} aria-pressed={favorites.includes(home.id)} onClick={() => setFavorites(f => f.includes(home.id) ? f.filter(id => id !== home.id) : [...f, home.id])}><HeartIcon size={21} weight={favorites.includes(home.id) ? 'fill' : 'regular'} /></button>
-          <div className="home-card-copy"><div className="home-card-title"><h3>{t(home.title)}</h3><div className="price"><strong>${home.price}</strong><span>{t("/ месяц")}</span></div></div><p><MapPinIcon size={16} />{t(home.district)}<span>·</span><BedIcon size={17} />{t(roomText(home.rooms))}<span>·</span>{home.area} {t("м²")}</p><button className="text-button" onClick={() => {
+          <div className="home-card-copy"><div className="home-card-title"><h3>{t(home.title)}</h3><div className="price"><strong>${home.price}</strong><span>{t("/ месяц")}</span></div></div><p><MapPinIcon size={16} />{t(home.district)}<span>·</span><BedIcon size={17} />{t(roomText(home.rooms))}<span>·</span>{home.area}{"\u00a0"}{t("м²")}</p><button className="text-button" onClick={() => {
                   selectHome(home);
                   setMapOpen(true);
                   window.scrollTo({
@@ -620,7 +602,7 @@ export function App() {
     </aside>}
 
     {modal === 'request' && <RequestForm home={requestHome} district={requestDistrict} close={() => setModal(null)} />}
-    {modal === 'map' && <Modal title={t("Квартиры на карте Дананга")} onClose={() => setModal(null)} wide className="full-map-modal"><div className="full-map"><CityMap quiet={visualStyle === 'gradient'} mode="full" selected={selected} onSelect={selectHome} /></div><div className="map-details"><p className="eyebrow">{t("ДАНАНГ · ВЫБЕРИТЕ ТОЧКУ")}</p><img key={selected.image} src={selected.image} alt={t(selected.title)} /><h2>{t(selected.title)}</h2><p>{t(selected.district)} · {t(roomText(selected.rooms))} · {selected.area} {t("м²")}</p><div className="price"><strong>${selected.price}</strong><span>{t("/ месяц")}</span></div><button className="navy-button" onClick={() => openDetails()}>{t("Подробнее о квартире")}<ArrowRightIcon size={19} /></button><p className="demo-note">{t("Объекты и координаты демонстрационные.")}</p></div></Modal>}
+    {modal === 'map' && <Modal title={t("Квартиры на карте Дананга")} onClose={() => setModal(null)} wide className="full-map-modal"><div className="full-map"><CityMap quiet={visualStyle === 'gradient'} mode="full" selected={selected} onSelect={selectHome} /></div><div className="map-details"><p className="eyebrow">{t("ДАНАНГ · ВЫБЕРИТЕ ТОЧКУ")}</p><img key={selected.image} src={selected.image} alt={t(selected.title)} /><h2>{t(selected.title)}</h2><p>{t(selected.district)} · {t(roomText(selected.rooms))} · {selected.area}{"\u00a0"}{t("м²")}</p><div className="price"><strong>${selected.price}</strong><span>{t("/ месяц")}</span></div><button className="navy-button" onClick={() => openDetails()}>{t("Подробнее о квартире")}<ArrowRightIcon size={19} /></button><p className="demo-note">{t("Объекты и координаты демонстрационные.")}</p></div></Modal>}
     {modal === 'about' && <Modal title={t("О концепте Danang Homii")} onClose={() => setModal(null)}><p className="eyebrow">DANANG HOMII</p><h2>{t("Дом начинается с ощущения.")}</h2><p>{t("Этот концепт помогает сначала увидеть квартиру, а затем понять её место в городе. Фото и карта связаны: нажимайте на цены, сравнивайте интерьеры и сохраняйте понравившиеся варианты.")}</p><p className="demo-note">{t("Перед вами локальный прототип. Квартиры, цены и координаты — примеры; фотографии созданы для дизайна. Сервис бронирования и отправка заявок не подключены.")}</p></Modal>}
     <div className="sr-only" aria-live="polite">{hint ? t('Выбрана {home}, {price} долларов в месяц', {
         home: t(selected.title),

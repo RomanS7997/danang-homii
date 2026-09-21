@@ -1,3 +1,24 @@
+# Design QA — readable SF/Inter typography, 2026-09-21
+
+**final result: passed (local visual and build verification)**
+
+Scope: user-requested larger type throughout the existing site and SF Pro Display appearance, including headings. Previous typography decisions in the historical reports below are superseded by this section.
+
+- Native SF font stack on Apple; locally bundled Inter Variable elsewhere. Apple font files are not shipped. Visual verification was performed on Windows with Inter, not on an Apple device.
+- Body text is 17–18 px; navigation, fields and buttons 16 px; form labels 15 px; secondary notes 14–15 px. Short uppercase section labels remain 12 px and map attribution 11 px. Muted body copy uses darker slate. Font sizes stay readable at mobile breakpoints.
+- Layout changes accommodate the larger type: wrapping filter bars and card metadata, two-column room choices, single-column mobile process cards, expanded hero space, and two-column mobile footer links. Area and unit stay together with a nonbreaking space.
+- Fixed P2: the enlarged mobile view switch collided with the slide counter. Redundant counter is hidden on phones. Fixed remaining 12 px explanatory text in dialogs, FAQ and inner-page content.
+- Compared the old deployed homepage and new render together at matching 1366 × 900 and 390 × 844 CSS viewports. Photo/map layout, gradient palette, artwork and copy remain consistent; larger sans-serif headings are the intentional change. Mobile baseline includes the map loading below the fold; comparison concerns typography and layout, not motion timing.
+- Visually inspected RU homepage top, map, apartment cards, form and footer; EN catalogue and owner page; VI property page, viewing dialog, owner form, guides and article. Sizes: 320 × 780, 390 × 844, 1280 × 720 and 1366 × 900. No horizontal overflow in checked views. Vietnamese accents and Cyrillic render correctly.
+- Interactions: language switch retains page, catalogue Studio filter returns one apartment, map Studio selection updates the photo and selected state, viewing dialog opens/closes. No browser console errors observed.
+- Root and Pages builds pass. Translation tests 3/3, Sites tests 4/4, Pages tests 3/3. Existing map-library bundle-size advisory remains.
+
+Evidence: local `work/typography-qa/` stores matched before/after hero captures and mobile form/footer captures. Representative final captures are included in `docs/screenshots/typography-desktop.png` and `docs/screenshots/typography-mobile.png`.
+
+No unresolved P0/P1/P2 issue remains in the typography scope. Backend/demo limitations are unchanged. Apple-device font rendering was not physically tested.
+
+---
+
 # GitHub Pages preparation — 2026-09-21
 
 **final result: passed — deployed and verified**
