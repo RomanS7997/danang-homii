@@ -4,6 +4,8 @@ import { messages } from './messages.js';
 import { appPath, sitePath } from './paths.js';
 
 export const languages = ['ru', 'en', 'vi'];
+// Autonyms stay in their own language so a visitor can always find their option.
+export const languageNames = { ru: 'Русский', en: 'English', vi: 'Tiếng Việt' };
 export function readLocation() {
   const parts = appPath(location.pathname).split('/').filter(Boolean);
   let saved = 'ru';

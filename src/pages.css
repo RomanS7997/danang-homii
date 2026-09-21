@@ -140,7 +140,6 @@ main:focus { outline:none; }
 .not-found .navy-button { display:inline-flex;margin-top:35px;text-decoration:none; }
 .inner-page .navy-button,.inner-page .text-button { text-decoration:none; }
 html[lang=vi] h1,html[lang=vi] h2 { line-height:1.14;letter-spacing:-.025em; }
-html[lang=vi] .split-intro h1 { font-size:clamp(39px,4.5vw,72px); }
 html[lang=vi] .split-bottom>span { white-space:normal; }
 @media(max-width:1200px){
  .site-header{gap:20px}.site-header nav{gap:18px}.site-header nav a{font-size:16px}.header-right{gap:10px}
@@ -162,6 +161,6 @@ html[lang=vi] .split-bottom>span { white-space:normal; }
  .about-story{grid-template-columns:1fr;gap:30px;margin:15px 0 40px}.about-story>img{height:340px}.about-story>.eyebrow{font-size:12px}.about-story p:not(.eyebrow){font-size:17px}.contact-block{grid-template-columns:1fr;gap:24px;padding:25px;border-radius:17px}.contact-block h2{font-size:37px}.contact-block .navy-button{width:100%;justify-content:space-between;font-size:16px}.contact-block .eyebrow{font-size:12px}
  .owners-layout{grid-template-columns:1fr;gap:15px;margin-top:8px}.owner-steps{margin-top:25px}.owner-form-card{padding:23px}.owner-form-card form h2{font-size:32px}.owner-field-row{grid-template-columns:1fr}.owner-form-card input,.owner-form-card select,.owner-form-card textarea{font-size:16px}.not-found{padding-top:50px}.not-found h1{font-size:46px}
  html[lang=en] .split-bottom>span,html[lang=vi] .split-bottom>span{font-size:14px;white-space:normal;line-height:1.5}
- html[lang=vi] .split-intro h1{font-size:40px;line-height:1.05}.design-shell .split-intro>.hero-service-copy{max-width:none}
+ .design-shell .split-intro>.hero-service-copy{max-width:none}
 }
-@media(max-width:380px){.site-header{padding-left:12px;padding-right:12px}.design-shell .site-header .brand strong{font-size:17px}.inner-page{padding-left:15px;padding-right:15px}.page-intro h1{font-size:42px}.listing-toolbar{gap:8px}.sort-label select{max-width:125px}.saved-filter{padding:10px}.property-title h1{font-size:40px}.guide-copy{padding:21px}html[lang=vi] .split-intro h1{font-size:36px}.property-photo>img{height:250px}}
+@media(max-width:380px){.site-header{padding-left:12px;padding-right:12px}.design-shell .site-header .brand strong{font-size:17px}.inner-page{padding-left:15px;padding-right:15px}.page-intro h1{font-size:42px}.listing-toolbar{gap:8px}.sort-label select{max-width:125px}.saved-filter{padding:10px}.property-title h1{font-size:40px}.guide-copy{padding:21px}.property-photo>img{height:250px}}

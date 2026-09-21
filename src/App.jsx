@@ -6,6 +6,7 @@ import { useHeroMapReveal } from './useHeroMapReveal.js';
 import { assetPath } from './paths.js';
 import { DistrictSection, ProcessSection, LeadSection, FaqSection, AboutSection, FullFooter } from './LandingSections.jsx';
 import { Link, useLocale } from './locale.jsx';
+import { LanguagePicker } from './LanguagePicker.jsx';
 import { CatalogPage, PropertyPage, DistrictsPage, RentalPage, GuidesPage, GuidePage, AboutPage, OwnersPage, NotFound, areaIds, areaNames, pageTitles, guides } from './Pages.jsx';
 import 'leaflet/dist/leaflet.css';
 import { ArrowRightIcon, ArrowDownIcon, ArrowUpRightIcon, ArrowClockwiseIcon, CaretLeftIcon, CaretRightIcon, MapPinIcon, MapTrifoldIcon, FrameCornersIcon, CrosshairIcon, XIcon, EyeIcon, ShieldCheckIcon, UsersIcon, FileTextIcon, BedIcon, RulerIcon, HeartIcon, CheckIcon, PlusIcon, MinusIcon, SlidersHorizontalIcon, ListIcon } from '@phosphor-icons/react';
@@ -424,7 +425,6 @@ export function App() {
     page,
     search,
     navigate,
-    changeLanguage
   } = useLocale();
   const initial = new URLSearchParams(window.location.search).get('variant');
   const designPreview = new URLSearchParams(window.location.search).get('preview') === '1';
@@ -540,7 +540,7 @@ export function App() {
     <header className="site-header" onKeyDown={e => { if (e.key === 'Escape' && menu) { setMenu(false); document.querySelector('.menu-button')?.focus(); } }}>
       <Link className="brand" aria-label={t("Danang Homii — на главную")}><img className="brand-symbol" src={assetPath('brandmark-coastal-gradient.webp')} width="52" height="52" alt="" /><strong>Danang Homii</strong></Link>
       <nav id="site-navigation" className={menu ? 'nav-open' : ''} aria-label={t("Главная навигация")}>{[['apartments', 'Квартиры'], ['districts', 'Районы'], ['how-to-rent', 'Как снять'], ['guides', 'Полезное'], ['about', 'О нас']].map(([to, label]) => <Link key={to} to={to} aria-current={page === to || page.startsWith(`${to}/`) ? 'page' : undefined}>{t(label)}</Link>)}<button className="mobile-menu-request" onClick={()=>{setMenu(false);request();}}>{t("Подобрать жильё")}<ArrowRightIcon size={18}/></button></nav>
-      <div className="header-right"><label className="language-picker"><span className="sr-only">{t('Язык сайта')}</span><select aria-label={t('Язык сайта')} value={lang} onChange={e => changeLanguage(e.target.value)}><option value="ru" lang="ru">RU</option><option value="en" lang="en">EN</option><option value="vi" lang="vi">VI</option></select></label><button className="navy-button header-cta" onClick={() => request()}>{t("Подобрать жильё")}<ArrowUpRightIcon size={18}/></button><button className="round-button menu-button" aria-label={t(menu ? 'Закрыть меню' : 'Открыть меню')} aria-expanded={menu} aria-controls="site-navigation" onClick={() => setMenu(!menu)}>{menu ? <XIcon size={23}/> : <ListIcon size={23}/>}</button></div>
+      <div className="header-right"><LanguagePicker onOpen={() => setMenu(false)}/><button className="navy-button header-cta" onClick={() => request()}>{t("Подобрать жильё")}<ArrowUpRightIcon size={18}/></button><button className="round-button menu-button" aria-label={t(menu ? 'Закрыть меню' : 'Открыть меню')} aria-expanded={menu} aria-controls="site-navigation" onClick={() => setMenu(!menu)}>{menu ? <XIcon size={23}/> : <ListIcon size={23}/>}</button></div>
     </header>
 
     <main tabIndex={-1} id="main-content">

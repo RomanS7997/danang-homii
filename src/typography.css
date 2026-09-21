@@ -16,6 +16,8 @@ button, a, label, input, select, textarea { line-height: 1.45; }
 .design-shell h3 { letter-spacing: -.025em; line-height: 1.35; }
 .design-shell .eyebrow { font-size: 12px; line-height: 1.65; font-weight: 600; letter-spacing: 1.15px; }
 .design-shell .split-intro h1 { font-size: clamp(36px, 3.8vw, 56px); line-height: 1.12; }
+/* Vietnamese diacritics need a little more leading, not a larger display size. */
+html[lang=vi] .design-shell .split-intro h1 { font-size: clamp(36px, 3.65vw, 52px); line-height: 1.16; letter-spacing: -.035em; }
 .design-shell .hero-service-copy { font-size: 16px; line-height: 1.65; width: 290px; }
 .design-shell .hero-heading { min-width: 0; }
 .design-shell .split-intro { gap: 32px; align-items: flex-end; }

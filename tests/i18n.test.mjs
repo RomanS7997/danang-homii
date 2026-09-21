@@ -13,7 +13,7 @@ const traverse=require('@babel/traverse').default;
 
 test('Every Russian UI/content string has English and Vietnamese translations',()=>{
   const missing=[];
-  for(const file of ['App.jsx','LandingSections.jsx','Pages.jsx','ExploreTools.jsx']){
+  for(const file of ['App.jsx','LandingSections.jsx','Pages.jsx','ExploreTools.jsx','LanguagePicker.jsx']){
     const ast=parse(fs.readFileSync(new URL(`../src/${file}`,import.meta.url),'utf8'),{sourceType:'module',plugins:['jsx']});
     traverse(ast,{
       StringLiteral(path){if(/[А-Яа-яЁё]/.test(path.node.value)&&!messages[path.node.value])missing.push(`${file}: ${path.node.value}`);},

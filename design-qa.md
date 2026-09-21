@@ -1,3 +1,19 @@
+# Design QA — open header and custom language menu, 2026-09-21
+
+**final result: passed** (implementation and regression checks; visual preference awaits user review).
+
+Scope: replace the rejected framed header with an open horizontal masthead, replace the browser-native language select and correct the oversized Vietnamese hero. No content, image, logo, map or inner-page feature changes.
+
+- **Matched comparisons:** desktop VI at 1366 × 900 CSS (1351 × 890 JPEG), before/after in `work/refined-header-qa/before-vi.jpg` and `desktop-vi.jpg`; mobile RU at 390 × 844 CSS (375 × 812 JPEG), `work/light-header-qa/mobile.jpg` versus `work/refined-header-qa/mobile-ru.jpg`. Each pair was opened together at the same page top, language, first apartment and photo/map state. Paths are in the parent workspace. A mobile capture during the photo-width transition was replaced with a settled capture. Screenshots were not resized.
+- **Layout/color:** full-width 92 px desktop and 72 px phone masthead, pale blue-to-ivory background, thin blue/champagne divider, unboxed links with an active underline and a navy CTA. Main groups have clear horizontal separation. Mobile navigation uses a vertical list and separate CTA. Hero starts 4 px higher on phones; desktop header occupies the same total vertical space as before.
+- **Typography/content/assets:** existing SF/Inter stack, logo and artwork retained. Navigation 15 px desktop / 17 px expanded mobile, language options 15 px, header CTA 14 px. The obsolete VI-only 72 px maximum is removed; VI hero now reaches 52 px, with comfortable leading for diacritics. At 1366 px it changed from 61.47 to 49.86 px; at 320 px it is 28 px and both sentences fit on separate lines. Copy unchanged.
+- **Language interaction:** custom menu displays native names and current-language check. Tested click selection among RU/EN/VI, ArrowUp/Down, Home, Escape focus return, Tab exit and outside click. Opening language choices closes the mobile navigation. Catalog `?beds=2` survives RU → VI with two-bedroom selection and active section intact. No native select remains in the header.
+- **Responsive/navigation:** 320, 390, 760, 960, 961, 1024, 1200 and 1366 px checks show no horizontal overflow or overlapping header groups. At 320 px the language popup stays inside the viewport. Desktop and mobile CTA open the request dialog; mobile links close the menu and navigate; sticky header remains at y=0 after a 900 px scroll. Captures also cover the language popup, mobile navigation and active catalog state.
+- **Validation:** root and Pages builds, all 16 existing tests and `git diff --check` pass. Translation scan now includes LanguagePicker. Pages still generates 42 localized routes. The existing bundle-size advisory remains; physical Apple SF rendering and touch hardware were not tested.
+
+No actionable P0/P1/P2 regressions in the matched desktop/mobile review. Checklist complete: intended composition, native-language names, focus/keyboard behavior, responsive bounds, VI typography, active navigation, CTA and build checks.
+
+---
 # Design QA — light header redesign, 2026-09-21
 
 **final result: passed**
