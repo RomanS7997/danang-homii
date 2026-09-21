@@ -1,3 +1,22 @@
+# Design QA — distinct header, 2026-09-21
+
+**final result: passed**
+
+Scope: the user wanted the header to stop blending into the page. The existing deployed design at `7ed1fef` is the source for all unchanged content. The intentional change is a floating navy navigation surface with an ivory/champagne CTA, clear current-page state and sticky positioning.
+
+- **Comparison evidence:** `work/header-qa/before-desktop.jpg` and `after-desktop.jpg`, plus `before-mobile.jpg` and `after-mobile.jpg`, in the parent workspace. Each source/implementation pair was opened together in the same visual comparison input. Desktop: 1366 × 900 CSS viewport, equal 1351 × 890 JPEG captures. Mobile: 390 × 844 CSS viewport, equal 375 × 812 JPEG captures. Same browser density and screenshot method; no resizing or density normalization. Same RU home route, sea apartment, photo + map open, scroll top. An initial mobile capture during the responsive transition was replaced before comparison.
+- **Typography:** existing SF/Inter family retained, navigation 15 px, language 16 px, brand 21 px desktop / 18–17 px phone. No content typography changes. Labels remain readable and untruncated in RU/EN/VI.
+- **Layout:** desktop header 76 px, mobile 66 px with 44 px controls. Header separates from the hero with an outer gutter, 18–22 px corners and restrained shadow. The first screen shifts down 14 px on desktop / 10 px on phone as an intentional allowance for the frame. Full-view paired captures show the complete header at readable size; a separate crop was unnecessary.
+- **Colors:** deep navy-to-blue surface, warm pale CTA and active page, visible language/menu borders, champagne keyboard focus outline. The requested stronger contrast is intentional; no drift in hero or page colors.
+- **Assets and content:** original transparent house/wave logo and all generated photos remain intact. The logo scales proportionally. Header labels, routes and CTA wording are unchanged. Existing Phosphor menu icon now changes to its close icon when open.
+- **Interactions:** header stayed at y=12 while the page scrolled to y=900. Desktop navigation and active-page state work. Mobile menu opens, closes with Escape and restores toggle focus; choosing Areas closes the menu and updates the route. Mobile CTA opens the existing request dialog. Anchor scroll padding and the property inquiry sticky offset allow room for the header.
+- **Responsive checks:** 320, 390, 960, 1024, 1131 and 1366 px; no horizontal overflow or overlapping header controls. Intermediate widths use the menu before navigation becomes crowded. The 320 px VI menu is captured in `mobile-menu-320-vi.jpg` (305 × 743 pixels). English was also checked across tablet/desktop breakpoints.
+- **Verification:** root build, Pages build, all 16 existing tests and `git diff --check` passed. No browser errors in the final local check. No new tests were added for this reversible style adjustment. Native Apple SF appearance was not physically checked.
+
+Comparison history: the first valid matched comparison found no actionable P0/P1/P2 regressions. Requested contrast and framing changes are intentional. Implementation checklist completed: contrast surface, responsive menu, visible active/focus states, sticky offsets, translations/interactions, build checks.
+
+---
+
 # Design QA — map navigation, 2026-09-21
 
 **Local result: passed.** The approved photo/map composition and gradient basemap are retained.
