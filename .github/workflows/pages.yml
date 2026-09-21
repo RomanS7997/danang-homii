@@ -31,7 +31,7 @@ jobs:
       - name: Build root deployment
         run: npm run build
       - name: Check translations and Sites routing
-        run: npm run test:i18n && npm run test:explore && npm run test:sites
+        run: npm run test:i18n && npm run test:explore && npm run test:map && npm run test:sites
       - name: Build GitHub Pages deployment
         run: npm run build:pages
         env:

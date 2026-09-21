@@ -47,4 +47,11 @@ export const core = [
 ['Квартиры на карте Дананга','Apartments on the Da Nang map','Căn hộ trên bản đồ Đà Nẵng'],['ДАНАНГ · ВЫБЕРИТЕ ТОЧКУ','DA NANG · SELECT A HOME','ĐÀ NẴNG · CHỌN CĂN HỘ'],['Объекты и координаты демонстрационные.','Properties and coordinates are examples.','Căn hộ và tọa độ chỉ là ví dụ.'],['О концепте Danang Homii','About the Danang Homii concept','Về ý tưởng Danang Homii'],['Дом начинается с ощущения.','Home starts with a feeling.','Nhà bắt đầu từ cảm giác thân thuộc.'],
 ['Этот концепт помогает сначала увидеть квартиру, а затем понять её место в городе. Фото и карта связаны: нажимайте на цены, сравнивайте интерьеры и сохраняйте понравившиеся варианты.','Explore an apartment, then discover its place in the city. Photos and the map work together: select prices, compare interiors and save your favourites.','Khám phá căn hộ rồi tìm hiểu vị trí trong thành phố. Ảnh và bản đồ liên kết với nhau: chọn mức giá, so sánh nội thất và lưu căn hộ yêu thích.'],
 ['Перед вами локальный прототип. Квартиры, цены и координаты — примеры; фотографии созданы для дизайна. Сервис бронирования и отправка заявок не подключены.','This is a local prototype. Apartments, prices and coordinates are examples; images were created for the design. Booking and request delivery are not connected.','Đây là bản mẫu cục bộ. Căn hộ, giá và tọa độ là ví dụ; hình ảnh được tạo cho thiết kế. Chức năng đặt chỗ và gửi yêu cầu chưa được kết nối.'],['Выбрана {home}, {price} долларов в месяц','Selected {home}, {price} dollars per month','Đã chọn {home}, {price} đô la mỗi tháng'],
+['Масштаб карты','Map zoom','Mức thu phóng bản đồ'],
+['Показать все квартиры на карте','Show all apartments on the map','Hiển thị tất cả căn hộ trên bản đồ'],
+['Приблизить выбранную квартиру','Zoom to the selected apartment','Phóng to căn hộ đã chọn'],
+['Выбранная','Selected home','Căn đã chọn'],
+['Квартира {current} из {total}','Apartment {current} of {total}','Căn hộ {current} / {total}'],
+['Колёсико — масштаб. Перетаскивайте карту, нажимайте на цены.','Scroll to zoom. Drag the map and select a price.','Cuộn để thu phóng. Kéo bản đồ và chọn mức giá.'],
+['Раздвиньте пальцы для приближения. Нажмите на цену.','Pinch to zoom. Tap a price to see the home.','Thu phóng bằng hai ngón tay. Chạm giá để chọn.'],
 ];

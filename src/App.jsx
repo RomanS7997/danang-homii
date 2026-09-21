@@ -1,13 +1,14 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import { mountBasemap } from './basemap.js';
+import { createMapNavigation } from './map-navigation.js';
 import { useHeroMapReveal } from './useHeroMapReveal.js';
 import { assetPath } from './paths.js';
 import { DistrictSection, ProcessSection, LeadSection, FaqSection, AboutSection, FullFooter } from './LandingSections.jsx';
 import { Link, useLocale } from './locale.jsx';
 import { CatalogPage, PropertyPage, DistrictsPage, RentalPage, GuidesPage, GuidePage, AboutPage, OwnersPage, NotFound, areaIds, areaNames, pageTitles, guides } from './Pages.jsx';
 import 'leaflet/dist/leaflet.css';
-import { ArrowRightIcon, ArrowDownIcon, ArrowUpRightIcon, ArrowClockwiseIcon, CaretLeftIcon, CaretRightIcon, MapPinIcon, MapTrifoldIcon, FrameCornersIcon, XIcon, EyeIcon, ShieldCheckIcon, UsersIcon, FileTextIcon, BedIcon, RulerIcon, HeartIcon, CheckIcon, PlusIcon, MinusIcon, SlidersHorizontalIcon, ListIcon } from '@phosphor-icons/react';
+import { ArrowRightIcon, ArrowDownIcon, ArrowUpRightIcon, ArrowClockwiseIcon, CaretLeftIcon, CaretRightIcon, MapPinIcon, MapTrifoldIcon, FrameCornersIcon, CrosshairIcon, XIcon, EyeIcon, ShieldCheckIcon, UsersIcon, FileTextIcon, BedIcon, RulerIcon, HeartIcon, CheckIcon, PlusIcon, MinusIcon, SlidersHorizontalIcon, ListIcon } from '@phosphor-icons/react';
 // Illustrative inventory only. Stable IDs connect routes, map markers and saved
 // favourites; replace factual fields together when real listings are connected.
 export const homes = [{
@@ -82,6 +83,9 @@ function CityMap({
   } = useLocale();
   const node = useRef(null);
   const map = useRef(null);
+  const navigation = useRef(null);
+  const inventory = useRef(all);
+  inventory.current = all;
   const markers = useRef([]);
   const latest = useRef(onSelect);
   latest.current = onSelect;
@@ -90,6 +94,7 @@ function CityMap({
   const [retry, setRetry] = useState(0);
   const [narrow, setNarrow] = useState(window.innerWidth < 760);
   const [dense, setDense] = useState(false);
+  const [zoom, setZoom] = useState(13);
   const [seen, setSeen] = useState(mode === 'full');
   const [pinPhase, setPinPhase] = useState('waiting');
   useEffect(() => {
@@ -126,7 +131,10 @@ function CityMap({
     if (!node.current) return;
     const m = L.map(node.current, {
       zoomControl: false,
-      scrollWheelZoom: false,
+      scrollWheelZoom: true,
+      wheelPxPerZoomLevel: 100,
+      // Our element observer also handles the hero's opening transition.
+      trackResize: false,
       attributionControl: true,
       minZoom: 10,
       maxZoom: 18,
@@ -137,42 +145,45 @@ function CityMap({
     });
     map.current = m;
     m.attributionControl.setPrefix(false);
-    const fit = () => {
-      m.invalidateSize({
-        animate: false,
-        pan: false
-      });
-      const isNarrow = window.innerWidth < 760;
-      const height = node.current?.clientHeight || 600;
-      setDense(mode === 'split' && height < 380);
-      const padding = mode === 'atlas' ? {
-        paddingTopLeft: [isNarrow ? 48 : 130, 54],
-        paddingBottomRight: [isNarrow ? 48 : 140, Math.max(280, height - 226)],
-        maxZoom: 13.75
-      } : {
-        paddingTopLeft: [40, 96],
-        paddingBottomRight: [40, 88],
-        maxZoom: 14.5
-      };
-      m.fitBounds(L.latLngBounds(homes.map(h => h.coords)), {
-        ...padding,
-        animate: false
-      });
+    const controls = createMapNavigation(m, {
+      bounds: () => L.latLngBounds(inventory.current.map(h => h.coords)),
+      onZoom: setZoom,
+      animate: () => !prefersReduced(),
+      fitOptions: () => {
+        const isNarrow = window.innerWidth < 760;
+        const height = node.current?.clientHeight || 600;
+        return mode === 'atlas' ? {
+          paddingTopLeft: [isNarrow ? 48 : 130, 54],
+          paddingBottomRight: [isNarrow ? 48 : 140, Math.max(280, height - 226)],
+          maxZoom: 13.75
+        } : {
+          paddingTopLeft: [40, mode === 'full' && isNarrow ? 120 : 96],
+          paddingBottomRight: [40, mode === 'full' && isNarrow ? 105 : 88],
+          maxZoom: 14.5
+        };
+      }
+    });
+    navigation.current = controls;
+    const resize = () => {
+      setDense(mode === 'split' && node.current.clientHeight < 380);
+      controls.resize();
     };
-    fit();
+    resize();
     const removeBasemap = mountBasemap(m, quiet, (next, kind) => {
       setStatus(next);
       setBasemap(kind);
     });
-    const ro = new ResizeObserver(fit);
+    const ro = new ResizeObserver(resize);
     ro.observe(node.current);
     return () => {
       ro.disconnect();
+      controls.destroy();
+      navigation.current = null;
       removeBasemap();
       m.remove();
       map.current = null;
     };
-  }, [mode, retry, narrow, quiet]);
+  }, [mode, retry, quiet]);
   useEffect(() => {
     if (!map.current) return;
     const focusedLabel = document.activeElement?.getAttribute('aria-label');
@@ -208,6 +219,8 @@ function CityMap({
       }));
       button.setAttribute('aria-pressed', String(home.id === selected.id));
       button.style.setProperty('--marker-delay', `${index * 160}ms`);
+      // Selecting a price should not also double-click-zoom or start a drag.
+      L.DomEvent.disableClickPropagation(button);
       button.addEventListener('click', e => {
         e.stopPropagation();
         latest.current(home);
@@ -272,14 +285,22 @@ function CityMap({
       line?.setStyle({ color });
     });
   }, [selected.id, all, mode, retry, narrow, quiet, dense, lang]);
-  return <div className={`city-map ${className}`} data-basemap={basemap} data-map-status={status} data-pin-reveal={!reveal || !seen || status === 'loading' ? 'waiting' : pinPhase}>
+  useEffect(() => {
+    // Sidebar arrows may select a home outside the visitor's zoomed viewport.
+    if (mode === 'full') map.current?.panInside(selected.coords, {
+      paddingTopLeft: [120, window.innerWidth < 760 ? 140 : 100], paddingBottomRight: [50, 130], animate: !prefersReduced()
+    });
+  }, [selected.id, mode]);
+  const gestureHint = mode === 'full' ? 'Колёсико — масштаб. Перетаскивайте карту, нажимайте на цены.' : null;
+  return <div className={`city-map ${className}`} data-map-zoom={zoom} data-basemap={basemap} data-map-status={status} data-pin-reveal={!reveal || !seen || status === 'loading' ? 'waiting' : pinPhase}>
     <div ref={node} className="leaflet-canvas" aria-label={t("Карта Дананга с демонстрационными квартирами")} />
+    {gestureHint && <div className="map-gesture-hint"><span className="map-desktop-hint">{t(gestureHint)}</span><span className="map-touch-hint">{t('Раздвиньте пальцы для приближения. Нажмите на цену.')}</span></div>}
     {status === 'loading' && <div className="map-status">{t("Загружаем карту…")}</div>}
     {status === 'error' && <div className="map-status map-error"><span>{t("Карта не загрузилась. Квартиры можно выбрать в каталоге.")}</span><button onClick={() => {
         setStatus('loading');
         setRetry(r => r + 1);
       }}>{t("Повторить")}</button></div>}
-    <div className="map-zoom"><button aria-label={t("Приблизить карту")} onClick={() => map.current?.zoomIn()}><PlusIcon size={17} /></button><button aria-label={t("Отдалить карту")} onClick={() => map.current?.zoomOut()}><MinusIcon size={17} /></button></div>
+    <div className="map-controls"><div className="map-zoom" role="group" aria-label={t('Масштаб карты')}><button aria-label={t("Приблизить карту")} title={t("Приблизить карту")} disabled={zoom >= 18} onClick={() => map.current?.zoomIn()}><PlusIcon size={20} /></button><button aria-label={t("Отдалить карту")} title={t("Отдалить карту")} disabled={zoom <= 10} onClick={() => map.current?.zoomOut()}><MinusIcon size={20} /></button></div><div className="map-location-controls"><button aria-label={t('Показать все квартиры на карте')} title={t('Показать все квартиры на карте')} onClick={() => navigation.current?.overview()}><FrameCornersIcon size={20}/>{mode === 'full' && <span>{t('Все квартиры')}</span>}</button><button aria-label={t('Приблизить выбранную квартиру')} title={t('Приблизить выбранную квартиру')} onClick={() => navigation.current?.locate(selected.coords)}><CrosshairIcon size={20}/>{mode === 'full' && <span>{t('Выбранная')}</span>}</button></div></div>
   </div>;
 }
 function Photo({
@@ -602,7 +623,7 @@ export function App() {
     </aside>}
 
     {modal === 'request' && <RequestForm home={requestHome} district={requestDistrict} close={() => setModal(null)} />}
-    {modal === 'map' && <Modal title={t("Квартиры на карте Дананга")} onClose={() => setModal(null)} wide className="full-map-modal"><div className="full-map"><CityMap quiet={visualStyle === 'gradient'} mode="full" selected={selected} onSelect={selectHome} /></div><div className="map-details"><p className="eyebrow">{t("ДАНАНГ · ВЫБЕРИТЕ ТОЧКУ")}</p><img key={selected.image} src={selected.image} alt={t(selected.title)} /><h2>{t(selected.title)}</h2><p>{t(selected.district)} · {t(roomText(selected.rooms))} · {selected.area}{"\u00a0"}{t("м²")}</p><div className="price"><strong>${selected.price}</strong><span>{t("/ месяц")}</span></div><button className="navy-button" onClick={() => openDetails()}>{t("Подробнее о квартире")}<ArrowRightIcon size={19} /></button><p className="demo-note">{t("Объекты и координаты демонстрационные.")}</p></div></Modal>}
+    {modal === 'map' && <Modal title={t("Квартиры на карте Дананга")} onClose={() => setModal(null)} wide className="full-map-modal"><div className="full-map"><CityMap quiet={visualStyle === 'gradient'} mode="full" selected={selected} onSelect={selectHome} /></div><div className="map-details"><p className="eyebrow">{t("ДАНАНГ · ВЫБЕРИТЕ ТОЧКУ")}</p><div className="map-home-switcher"><button className="round-button" aria-label={t('Предыдущая квартира')} onClick={() => step(-1)}><CaretLeftIcon size={20}/></button><span aria-live="polite">{t('Квартира {current} из {total}', {current: homes.findIndex(h => h.id === selected.id) + 1, total: homes.length})}</span><button className="round-button" aria-label={t('Следующая квартира')} onClick={() => step(1)}><CaretRightIcon size={20}/></button></div><img key={selected.image} src={selected.image} alt={t(selected.title)} /><h2>{t(selected.title)}</h2><p>{t(selected.district)} · {t(roomText(selected.rooms))} · {selected.area}{"\u00a0"}{t("м²")}</p><div className="price"><strong>${selected.price}</strong><span>{t("/ месяц")}</span></div><button className="navy-button" onClick={() => openDetails()}>{t("Подробнее о квартире")}<ArrowRightIcon size={19} /></button><p className="demo-note">{t("Объекты и координаты демонстрационные.")}</p></div></Modal>}
     {modal === 'about' && <Modal title={t("О концепте Danang Homii")} onClose={() => setModal(null)}><p className="eyebrow">DANANG HOMII</p><h2>{t("Дом начинается с ощущения.")}</h2><p>{t("Этот концепт помогает сначала увидеть квартиру, а затем понять её место в городе. Фото и карта связаны: нажимайте на цены, сравнивайте интерьеры и сохраняйте понравившиеся варианты.")}</p><p className="demo-note">{t("Перед вами локальный прототип. Квартиры, цены и координаты — примеры; фотографии созданы для дизайна. Сервис бронирования и отправка заявок не подключены.")}</p></Modal>}
     <div className="sr-only" aria-live="polite">{hint ? t('Выбрана {home}, {price} долларов в месяц', {
         home: t(selected.title),

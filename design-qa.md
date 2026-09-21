@@ -1,3 +1,19 @@
+# Design QA — map navigation, 2026-09-21
+
+**Local result: passed.** The approved photo/map composition and gradient basemap are retained.
+
+- Reproduced the original bug on the deployed version: a real wheel event left the expanded map's marker positions unchanged. Wheel zoom was disabled in the shared Leaflet configuration.
+- Enabled pointer-centred wheel zoom in both hero and expanded maps. Added 44 px zoom controls, overview and selected-home actions, desktop/touch hints, and translated apartment navigation in the sidebar.
+- Real browser wheel input changed expanded-map zoom from 13.75 to 16.25 without scrolling the page. Hero zoom changed from 12.75 to 14 while page scroll stayed 247; scrolling outside the map then moved the page to 607. Dragging changed the map pane and marker screen positions. Zoom buttons, overview, locate, apartment arrows and Escape were exercised.
+- User zoom 14.75 survived a desktop-to-390 px resize. Overview restores all four points. Apartment navigation preserves street-level zoom and pans an offscreen selection into an area clear of the controls. Added regression tests for initial fitting, user navigation, explicit overview, selected-home zoom and handler cleanup.
+- Desktop 1366 × 900, phone widths 390 and 320: controls, prices, attribution and card inspected; no horizontal overflow. At 320 px all four prices are clear of the hint and bottom controls. Removed an inherited mobile `!important` rule that made every map-card paragraph 17 px, including its overline. Retained readable body text and compact secondary labels.
+- RU, EN and VI UI verified. Mobile layout uses a minimum map height to keep nearby prices separate; the dialog can scroll to the card CTA. Touch-specific copy and native Leaflet pinch support are preserved; physical multi-touch was not tested in the desktop browser.
+- Passed root build, Pages build, all 16 tests (i18n, exploration, map navigation, Sites worker, Pages routes/assets), and `git diff --check`. Pages output includes 42 direct route entry points. Existing bundle-size advisory remains.
+
+Browser captures: `work/map-interaction-qa/desktop-ru-overview.jpg`, `mobile-320-overview.jpg`, `mobile-320-vi.jpg` in the parent workspace. The 320 px RU capture preceded the final spacing refinement; VI and desktop captures show the final layout.
+
+---
+
 # Design QA — richer inner pages, 2026-09-21
 
 **final result: passed**

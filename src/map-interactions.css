@@ -1,0 +1,35 @@
+/* Controls stay outside Leaflet's transformed panes, so they never move or
+   scale with the map. Attribution has its own clear strip along the bottom. */
+.map-controls{position:absolute;left:16px;bottom:30px;z-index:800;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.map-controls .map-zoom{position:static;margin:0;overflow:visible}
+.map-controls .map-zoom,.map-location-controls{background:var(--paper);border:1px solid rgba(23,49,76,.15);border-radius:12px;box-shadow:0 4px 18px #16304a16}
+.map-controls button{display:flex;align-items:center;justify-content:center;gap:8px;min-width:44px;min-height:44px;padding:0 12px;border:0;background:transparent;color:var(--navy);font-size:14px;line-height:1.2;cursor:pointer;border-radius:11px;transition:background .15s}
+.map-controls .map-zoom button{width:44px;height:44px;padding:0}
+.map-controls .map-zoom button+button{border-top:1px solid rgba(23,49,76,.12);border-radius:0 0 11px 11px}
+.map-controls button:hover{background:#eaf0f5}
+.map-controls button:disabled{opacity:.35;cursor:default;background:transparent}
+.map-controls button:focus-visible,.map-home-switcher button:focus-visible{outline:3px solid #417bbb;outline-offset:3px}
+.map-location-controls{display:flex}
+.map-location-controls button+button{border-left:1px solid rgba(23,49,76,.12);border-radius:0 11px 11px 0}
+.map-controls svg{flex-shrink:0}
+.map-gesture-hint{position:absolute;top:16px;left:16px;right:16px;z-index:700;width:fit-content;max-width:calc(100% - 32px);padding:10px 13px;border:1px solid #17314c12;border-radius:11px;background:#fffdf6ed;color:#33485d;box-shadow:0 3px 16px #17314c0a;font-size:14px;line-height:1.45;pointer-events:none}
+.map-touch-hint{display:none}
+.map-home-switcher{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:16px 0 0;padding:8px 0;border-top:1px solid #17314c18;border-bottom:1px solid #17314c18;font-size:14px;color:var(--muted)}
+.map-home-switcher .round-button{width:44px;height:44px;flex-shrink:0;border:1px solid #17314c18;background:white}
+.map-details>img{margin-top:16px;aspect-ratio:1.65}
+@media(pointer:coarse){.map-desktop-hint{display:none}.map-touch-hint{display:inline}}
+@media(max-width:759px){
+  .map-controls{left:12px;bottom:30px}
+  .atlas-map-layer .map-controls{bottom:290px}
+  .map-gesture-hint{top:12px;left:12px;right:60px;max-width:calc(100% - 72px);padding:9px 11px}
+  .full-map-modal{width:calc(100% - 24px)}
+  .full-map-modal .full-map{height:46%;min-height:390px}
+  .full-map-modal .map-details{padding:18px}
+  .full-map-modal .map-details .eyebrow{max-width:none;padding-right:0;font-size:12px;line-height:1.5;letter-spacing:.08em;margin:0}
+  .map-home-switcher{margin:12px 0 18px;padding:6px 0}
+  .full-map-modal .map-details>img{margin:0 0 10px 12px;width:32%;height:100px}
+  .full-map-modal .map-details h2{font-size:22px;line-height:1.2;margin:0 0 10px}
+  .full-map-modal .map-details>p:not(.eyebrow){font-size:14px;line-height:1.5}
+  .full-map-modal .map-details .price{clear:both;margin:12px 0}
+  .map-location-controls button{gap:6px;padding:0 10px}
+}

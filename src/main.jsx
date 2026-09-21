@@ -13,6 +13,7 @@ import "./hero-motion.css";
 import '@fontsource-variable/inter';
 import './typography.css';
 import './enrichment.css';
+import './map-interactions.css';
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
