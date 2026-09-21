@@ -14,7 +14,6 @@ import '@fontsource-variable/inter';
 import './typography.css';
 import './enrichment.css';
 import './map-interactions.css';
-import './header.css';
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
