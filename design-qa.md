@@ -1,6 +1,10 @@
 # GitHub Pages preparation — 2026-09-21
 
-Root build and Pages build pass. Tests: 3 translation, 4 Sites worker and 3 Pages checks pass. All 42 locale routes have physical HTML entry points; generated HTML/CSS use the repository base and resolve existing assets. Root-deployment compatibility is preserved. Live deployment verification is recorded separately after publication.
+**final result: passed — deployed and verified**
+
+Root build and Pages build pass. Tests: 3 translation, 4 Sites worker and 3 Pages checks pass. All 42 locale routes have physical HTML entry points; generated HTML/CSS use the repository base and resolve existing assets. Root-deployment compatibility is preserved.
+
+Public URL: https://romans7997.github.io/danang-homii/. Initial source revision: `affe01d`. [Build and deploy run](https://github.com/RomanS7997/danang-homii/actions/runs/35573483884) succeeded. Live HTTP checks returned 200 for all 46 requests: root, 42 localized page entry points, apartment photo, logo and local map style. Browser checks confirmed rendered imagery, ready vector basemap, all four prices, studio selection updating the photo, apartment deep-link reload and EN/VI switching while retaining the property. Vietnamese direct-page reload rendered the correct heading. No browser console errors were observed.
 
 The historical `local-review/` and `preview/` paths below describe local review artifacts, not files required to build the site. Two representative screenshots are included in `docs/screenshots/`.
 
